@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexo BI — Beltrán Consultoría</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --surface-0: #f1f0e8;
+  --surface-1: #f7f6f1;
+  --surface-2: #ffffff;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border: rgba(11,11,11,0.10);
+  --border-strong: rgba(11,11,11,0.18);
+  --radius: 8px;
+  --bg-accent: #e6f1fb;
+  --border-accent: #b5d4f4;
+  --text-accent: #185fa5;
+  --fill-accent: #2a78d6;
+  --bg-success: #eaf3de;
+  --border-success: #c0dd97;
+  --text-success: #3b6d11;
+  --bg-danger: #fcebeb;
+  --border-danger: #f7c1c1;
+  --text-danger: #a32d2d;
+  --bg-warning: #faeeda;
+  --border-warning: #fac775;
+  --text-warning: #854f0b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #e8e7df; min-height: 100vh; padding: 24px; }
+.app { display: flex; min-height: 620px; background: var(--surface-0); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 1100px; margin: 0 auto; }
+.sidebar { width: 210px; min-width: 210px; background: var(--surface-1); border-right: 0.5px solid var(--border); padding: 20px 0; display: flex; flex-direction: column; gap: 2px; }
+.sidebar-logo { padding: 0 16px 18px; border-bottom: 0.5px solid var(--border); margin-bottom: 10px; }
+.logo-brand { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.logo-biz { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.logo-period { font-size: 11px; color: var(--text-muted); margin-top: 6px; padding-top: 6px; border-top: 0.5px solid var(--border); }
+.nav-item { display: flex; align-items: center; gap: 9px; padding: 9px 16px; cursor: pointer; font-size: 13px; color: var(--text-secondary); border-left: 3px solid transparent; user-select: none; }
+.nav-item:hover { background: var(--surface-2); color: var(--text-primary); }
+.nav-item.active { background: var(--bg-accent); color: var(--text-accent); border-left-color: var(--fill-accent); font-weight: 600; }
+.nav-item i { font-size: 15px; }
+.nav-section { font-size: 10px; color: var(--text-muted); padding: 10px 16px 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+.sidebar-footer { margin-top: auto; padding: 12px 16px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--text-muted); }
+.main { flex: 1; overflow: auto; display: flex; flex-direction: column; min-width: 0; }
+.topbar { padding: 14px 22px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); }
+.page-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.page-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.alert-strip { background: var(--bg-warning); border-bottom: 0.5px solid var(--border-warning); padding: 8px 22px; font-size: 12px; color: var(--text-warning); display: flex; align-items: center; gap: 8px; }
+.content { padding: 18px 22px; flex: 1; background: var(--surface-0); }
+.screen { display: none; }
+.screen.active { display: block; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.kpi { background: var(--surface-1); border-radius: var(--radius); padding: 13px 14px; }
+.kpi-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+.kpi-val { font-size: 20px; font-weight: 600; color: var(--text-primary); }
+.kpi-sub { font-size: 11px; margin-top: 3px; }
+.kpi-sub.up { color: var(--text-success); }
+.kpi-sub.warn { color: var(--text-warning); }
+.kpi-sub.muted { color: var(--text-muted); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.card { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 15px; }
+.card-title { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+.card-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
+.alert-list { display: flex; flex-direction: column; gap: 8px; }
+.alert-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--surface-1); }
+.alert-item.danger { border-color: var(--border-danger); background: var(--bg-danger); }
+.alert-item.warning { border-color: var(--border-warning); background: var(--bg-warning); }
+.alert-item.success { border-color: var(--border-success); background: var(--bg-success); }
+.alert-icon { font-size: 15px; margin-top: 1px; }
+.alert-item.danger .alert-icon { color: var(--text-danger); }
+.alert-item.warning .alert-icon { color: var(--text-warning); }
+.alert-item.success .alert-icon { color: var(--text-success); }
+.alert-title { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+.alert-item.danger .alert-title { color: var(--text-danger); }
+.alert-item.warning .alert-title { color: var(--text-warning); }
+.alert-item.success .alert-title { color: var(--text-success); }
+.alert-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; line-height: 1.45; }
+.section-label { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+.table-wrap { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead th { background: var(--surface-1); padding: 9px 13px; text-align: left; font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 0.5px solid var(--border); }
+tbody td { padding: 10px 13px; border-bottom: 0.5px solid var(--border); color: var(--text-primary); }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--surface-1); }
+.badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: var(--radius); font-weight: 600; }
+.badge-success { background: var(--bg-success); color: var(--text-success); }
+.badge-danger { background: var(--bg-danger); color: var(--text-danger); }
+.badge-warning { background: var(--bg-warning); color: var(--text-warning); }
+.badge-muted { background: var(--surface-1); color: var(--text-muted); border: 0.5px solid var(--border); }
+.scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 14px; }
+.sc-card { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; background: var(--surface-2); }
+.sc-card.base { border-color: var(--border-accent); background: var(--bg-accent); }
+.sc-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.sc-card.base .sc-label { color: var(--text-accent); }
+.sc-val { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.sc-card.base .sc-val { color: var(--text-accent); }
+.sc-note { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+.bench-kpi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+.bench-kpi { background: var(--surface-1); border-radius: var(--radius); padding: 13px 14px; }
+.bench-compare { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
+.bench-your { font-size: 20px; font-weight: 600; color: var(--text-primary); }
+.bench-sector { font-size: 12px; color: var(--text-muted); }
+.bench-delta { font-size: 11px; margin-top: 3px; }
+.bench-delta.up { color: var(--text-success); }
+.bench-delta.down { color: var(--text-danger); }
+.practices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.prac-card { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 13px 14px; }
+.prac-title { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.prac-text { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+.prac-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: var(--radius); margin-top: 8px; font-weight: 600; }
+.tag-opp { background: var(--bg-warning); color: var(--text-warning); }
+.tag-ok { background: var(--bg-success); color: var(--text-success); }
+.tag-work { background: var(--bg-accent); color: var(--text-accent); }
+.future-note { background: var(--surface-1); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 9px 13px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-brand">Mi negocio</div>
+      <div class="logo-biz">Beltrán Consultoría</div>
+      <div class="logo-period"><i class="ti ti-calendar"></i> Mayo 2025</div>
+    </div>
+    <div class="nav-section">Financiero</div>
+    <div class="nav-item active" onclick="showScreen('resumen', this)">
+      <i class="ti ti-home"></i> Resumen del mes
+    </div>
+    <div class="nav-item" onclick="showScreen('clientes', this)">
+      <i class="ti ti-chart-bar"></i> Mis clientes
+    </div>
+    <div class="nav-item" onclick="showScreen('caja', this)">
+      <i class="ti ti-calendar-stats"></i> Qué viene
+    </div>
+    <div class="nav-item" onclick="showScreen('fuentes', this)">
+      <i class="ti ti-plug"></i> De dónde vienen los datos
+    </div>
+    <div class="nav-section">Mi rubro</div>
+    <div class="nav-item" onclick="showScreen('benchmark', this)">
+      <i class="ti ti-users-group"></i> Cómo me comparo
+    </div>
+    <div class="sidebar-footer">
+      <div>Próxima sesión con Nexo</div>
+      <div style="font-weight:600; color:var(--text-secondary); margin-top:2px;">12 de junio · 11 hs</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="page-title" id="page-title">¿Cuánto gané este mes?</div>
+        <div class="page-sub" id="page-sub">Mayo 2025 · Actualizado hoy a las 8:14</div>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted);">Nexo BI</div>
+    </div>
+
+    <div class="alert-strip" id="alert-strip">
+      <i class="ti ti-alert-triangle"></i>
+      <strong>Atención:</strong> El 18 de junio se juntan tres vencimientos. La caja puede quedar corta si no entra el cobro de Grupo Palermo antes de esa fecha.
+    </div>
+
+    <div class="content">
+
+      <!-- RESUMEN -->
+      <div class="screen active" id="screen-resumen">
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Lo que me quedó</div>
+            <div class="kpi-val">$3.420.000</div>
+            <div class="kpi-sub up"><i class="ti ti-trending-up"></i> Mejor que abril (+8%)</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">De cada $100 que facturé</div>
+            <div class="kpi-val">$28,40</div>
+            <div class="kpi-sub muted">Margen neto del mes</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Caja ahora mismo</div>
+            <div class="kpi-val">$1.820.000</div>
+            <div class="kpi-sub warn"><i class="ti ti-alert-circle"></i> Riesgo el 18 de junio</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Lo que facturé</div>
+            <div class="kpi-val">$12.030.000</div>
+            <div class="kpi-sub up"><i class="ti ti-trending-up"></i> +12% vs abril</div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title">Cómo vengo en el año</div>
+            <div class="card-sub">Resultado neto mensual en pesos</div>
+            <div style="position:relative;height:150px;">
+              <canvas id="c-result"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Alertas de esta semana</div>
+            <div class="card-sub">Lo que necesitás saber ahora</div>
+            <div class="alert-list">
+              <div class="alert-item danger">
+                <i class="ti ti-droplet alert-icon"></i>
+                <div>
+                  <div class="alert-title">Caja en riesgo el 18 de junio</div>
+                  <div class="alert-desc">Se juntan IIBB, alquiler y sueldos. Si Grupo Palermo no paga antes, la caja queda en $272.000.</div>
+                </div>
+              </div>
+              <div class="alert-item warning">
+                <i class="ti ti-chart-line alert-icon"></i>
+                <div>
+                  <div class="alert-title">Tecno Sur está bajando el margen</div>
+                  <div class="alert-desc">Cayó 6 puntos en 3 meses. Vale la pena revisar el precio antes de renovar.</div>
+                </div>
+              </div>
+              <div class="alert-item success">
+                <i class="ti ti-coin alert-icon"></i>
+                <div>
+                  <div class="alert-title">Factura de Grupo Palermo vence en 3 días</div>
+                  <div class="alert-desc">$960.000. Si entra antes del 18, el problema de caja se resuelve solo.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-label">Dónde se fue la plata este mes</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concepto</th><th>Importe</th><th>Del total facturado</th></tr></thead>
+            <tbody>
+              <tr><td>Sueldos y cargas sociales</td><td>$5.210.000</td><td style="color:var(--text-secondary)">43,3%</td></tr>
+              <tr><td>Alquiler y servicios</td><td>$1.480.000</td><td style="color:var(--text-secondary)">12,3%</td></tr>
+              <tr><td>Impuestos y cargas fiscales</td><td>$980.000</td><td style="color:var(--text-secondary)">8,1%</td></tr>
+              <tr><td>Proveedores y gastos operativos</td><td>$740.000</td><td style="color:var(--text-secondary)">6,2%</td></tr>
+              <tr><td>Otros costos imputados</td><td>$200.000</td><td style="color:var(--text-secondary)">1,7%</td></tr>
+              <tr><td style="font-weight:600">Lo que te quedó</td><td style="font-weight:600">$3.420.000</td><td style="color:var(--text-success);font-weight:600">28,4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div class="screen" id="screen-clientes">
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:14px;">
+          De cada cliente, esto es lo que realmente te queda después de imputar horas, gastos y cargas. No lo que facturás, lo que ganás.
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cliente</th><th>Facturado</th><th>Costos imputados</th><th>Lo que te quedó</th><th>Margen real</th><th></th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:600">Grupo Palermo</td><td>$3.200.000</td><td>$1.888.000</td><td>$1.312.000</td><td style="color:var(--text-success);font-weight:600">41%</td><td><span class="badge badge-success">Sano</span></td></tr>
+              <tr><td style="font-weight:600">Consultora OSA</td><td>$2.800.000</td><td>$1.820.000</td><td>$980.000</td><td style="color:var(--text-success);font-weight:600">35%</td><td><span class="badge badge-success">Sano</span></td></tr>
+              <tr><td style="font-weight:600">Distribuidora Ramos</td><td>$2.430.000</td><td>$1.677.000</td><td>$753.000</td><td style="color:var(--text-success);font-weight:600">31%</td><td><span class="badge badge-success">Sano</span></td></tr>
+              <tr><td style="font-weight:600">Tecno Sur</td><td>$2.100.000</td><td>$1.638.000</td><td>$462.000</td><td style="color:var(--text-warning);font-weight:600">22%</td><td><span class="badge badge-warning">Revisar precio</span></td></tr>
+              <tr><td style="font-weight:600">Resto</td><td>$1.500.000</td><td>$1.080.000</td><td>$420.000</td><td style="color:var(--text-secondary);font-weight:600">28%</td><td><span class="badge badge-muted">Normal</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Margen por cliente</div>
+          <div class="card-sub">Qué porcentaje te queda de cada uno</div>
+          <div style="position:relative;height:170px;">
+            <canvas id="c-clientes"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAJA -->
+      <div class="screen" id="screen-caja">
+        <div class="scenario-grid">
+          <div class="sc-card">
+            <div class="sc-label">Si Grupo Palermo no paga</div>
+            <div class="sc-val">$680.000</div>
+            <div class="sc-note">Caja mínima el 18 de junio</div>
+          </div>
+          <div class="sc-card base">
+            <div class="sc-label">Si todo sale según lo acordado</div>
+            <div class="sc-val">$1.230.000</div>
+            <div class="sc-note">Escenario más probable</div>
+          </div>
+          <div class="sc-card">
+            <div class="sc-label">Si Grupo Palermo paga antes</div>
+            <div class="sc-val">$1.920.000</div>
+            <div class="sc-note">Caja holgada en junio</div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-title">Cómo va a estar la caja las próximas 6 semanas</div>
+          <div class="card-sub">El punto rojo es cuando se juntan los vencimientos</div>
+          <div style="position:relative;height:170px;">
+            <canvas id="c-caja"></canvas>
+          </div>
+        </div>
+        <div class="section-label">Lo que entra y sale en junio</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Fecha</th><th>Qué es</th><th>Impacto en caja</th></tr></thead>
+            <tbody>
+              <tr><td>10 jun</td><td>Alquiler</td><td style="color:var(--text-danger)">-$380.000</td></tr>
+              <tr><td>13 jun</td><td>Sueldos (8 personas)</td><td style="color:var(--text-danger)">-$620.000</td></tr>
+              <tr><td>18 jun</td><td>IIBB mayo</td><td style="color:var(--text-danger)">-$148.000</td></tr>
+              <tr><td>20 jun</td><td>Cobro Grupo Palermo</td><td style="color:var(--text-success)">+$960.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BENCHMARK -->
+      <div class="screen" id="screen-benchmark">
+        <div class="future-note">
+          <i class="ti ti-info-circle"></i>
+          Los datos del rubro son anónimos y agregados. Ninguna empresa es identificable. Se activan cuando hay suficientes empresas similares en la base.
+        </div>
+        <div class="bench-kpi-grid">
+          <div class="bench-kpi">
+            <div class="kpi-label">Margen neto</div>
+            <div class="bench-compare">
+              <div class="bench-your">28,4%</div>
+              <div class="bench-sector">sector: 24,1%</div>
+            </div>
+            <div class="bench-delta up"><i class="ti ti-trending-up"></i> 4,3 puntos arriba del promedio</div>
+          </div>
+          <div class="bench-kpi">
+            <div class="kpi-label">Días para cobrar una factura</div>
+            <div class="bench-compare">
+              <div class="bench-your">34 días</div>
+              <div class="bench-sector">sector: 28 días</div>
+            </div>
+            <div class="bench-delta down"><i class="ti ti-trending-down"></i> Cobrás 6 días más tarde que el promedio</div>
+          </div>
+          <div class="bench-kpi">
+            <div class="kpi-label">Peso del cliente más grande</div>
+            <div class="bench-compare">
+              <div class="bench-your">42%</div>
+              <div class="bench-sector">sector: 31%</div>
+            </div>
+            <div class="bench-delta down"><i class="ti ti-alert-circle"></i> Más concentrado que el promedio</div>
+          </div>
+        </div>
+        <div class="section-label">Lo que hacen bien las consultoras con mejor flujo</div>
+        <div class="practices-grid">
+          <div class="prac-card">
+            <div class="prac-title">Cobran en menos de 30 días</div>
+            <div class="prac-text">Emiten la factura el mismo día de entrega y acuerdan el plazo por escrito en el contrato. Las que superan 35 días son las que más problemas de caja tienen cuando se juntan vencimientos.</div>
+            <span class="prac-tag tag-opp">Tu oportunidad</span>
+          </div>
+          <div class="prac-card">
+            <div class="prac-title">Ningún cliente supera el 30% de la facturación</div>
+            <div class="prac-text">Las consultoras con ingresos más estables distribuyen la cartera activamente. Cuando un cliente concentra más del 35%, una pausa o salida impacta directo en la caja del mes.</div>
+            <span class="prac-tag tag-opp">Tu oportunidad</span>
+          </div>
+          <div class="prac-card">
+            <div class="prac-title">Revisan el margen por cliente cada 3 meses</div>
+            <div class="prac-text">Identifican y renegocian los clientes por debajo del margen objetivo antes de que el problema sea grande. Un ajuste de precio cuesta menos que mantener un cliente que absorbe capacidad sin rentabilidad.</div>
+            <span class="prac-tag tag-ok">Lo estás haciendo</span>
+          </div>
+          <div class="prac-card">
+            <div class="prac-title">Tienen reserva para 6 semanas de costos fijos</div>
+            <div class="prac-text">El promedio del rubro mantiene entre 4 y 6 semanas de costos fijos en caja. Las que están por debajo son las que recurren a financiamiento de corto plazo o demoran pagos a proveedores.</div>
+            <span class="prac-tag tag-work">A trabajar</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUENTES -->
+      <div class="screen" id="screen-fuentes">
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:16px;">
+          Nexo BI conecta y consolida automáticamente las fuentes del negocio. No cargás datos manualmente.
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;">
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <i class="ti ti-file-invoice"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">ARCA (ex-AFIP)</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Facturación electrónica · Última sync: hoy 08:14</div>
+            </div>
+            <span class="badge badge-success">Conectado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <i class="ti ti-building-bank"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Banco Galicia</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Extracto de cuenta · Última sync: ayer 22:00</div>
+            </div>
+            <span class="badge badge-success">Conectado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <i class="ti ti-brand-paypal"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Mercado Pago</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Cobros y comisiones · Última sync: hoy 08:14</div>
+            </div>
+            <span class="badge badge-success">Conectado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
+              <i class="ti ti-table"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Planillas internas</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Google Sheets · Importación inicial completada</div>
+            </div>
+            <span class="badge badge-success">Configurado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
+              <i class="ti ti-calculator"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Sistema contable (Colppy)</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Integración disponible · No configurada</div>
+            </div>
+            <span class="badge badge-warning">Opcional</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px dashed var(--border-strong); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px; opacity:0.6;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
+              <i class="ti ti-plus"></i>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-muted);">Agregar fuente</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Otro banco, sistema de gestión u otro</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--surface-1); border:0.5px solid var(--border); border-radius:var(--radius); padding:10px 14px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:8px;">
+          <i class="ti ti-info-circle"></i>
+          Los datos se actualizan automáticamente. Nexo los consolida, categoriza y traduce en los indicadores que ves en el dashboard. Vos no cargás nada.
+        </div>
+      </div>
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showScreen(name, el) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  el.classList.add('active');
+  const titles = {
+    resumen: ['¿Cuánto gané este mes?', 'Mayo 2025 · Actualizado hoy a las 8:14'],
+    clientes: ['¿Qué cliente me deja más margen?', 'Rentabilidad real por cliente · Mayo 2025'],
+    caja: ['¿Me alcanza la plata para lo que viene?', 'Proyección de caja · Próximas 6 semanas'],
+    fuentes: ['De dónde vienen los datos', 'Fuentes conectadas · Actualización automática'],
+    benchmark: ['¿Cómo estoy respecto a otras consultoras?', 'Consultoría y servicios profesionales · CABA y GBA']
+  };
+  document.getElementById('page-title').textContent = titles[name][0];
+  document.getElementById('page-sub').textContent = titles[name][1];
+  document.getElementById('alert-strip').style.display = (name === 'resumen' || name === 'caja') ? 'flex' : 'none';
+}
+
+const grid = 'rgba(0,0,0,0.06)';
+const muted = '#898781';
+const accent = '#2a78d6';
+const accentBg = 'rgba(42,120,214,0.09)';
+const warn = '#e34948';
+
+const base = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+  scales: {
+    x: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } },
+    y: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } }
+  }
+};
+
+new Chart(document.getElementById('c-result'), {
+  type: 'line',
+  data: {
+    labels: ['Dic','Ene','Feb','Mar','Abr','May'],
+    datasets: [{ data: [2100000,2400000,1900000,2800000,3200000,3420000], borderColor: accent, backgroundColor: accentBg, fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: accent, borderWidth: 2 }]
+  },
+  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } } }
+});
+
+new Chart(document.getElementById('c-clientes'), {
+  type: 'bar',
+  data: {
+    labels: ['Grupo Palermo','Consultora OSA','Dist. Ramos','Resto','Tecno Sur'],
+    datasets: [{ data: [41,35,31,28,22], backgroundColor: [accent,accent,accent,'#73726c',warn], borderRadius: 4, maxBarThickness: 22 }]
+  },
+  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => v + '%' }, min: 0, max: 50 } } }
+});
+
+new Chart(document.getElementById('c-caja'), {
+  type: 'line',
+  data: {
+    labels: ['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6'],
+    datasets: [{ data: [1820000,1650000,890000,1230000,1540000,1780000], borderColor: accent, backgroundColor: accentBg, fill: true, tension: 0.35, borderWidth: 2,
+      pointRadius: [4,4,6,4,4,4],
+      pointBackgroundColor: [accent,accent,warn,accent,accent,accent],
+      pointBorderColor: [accent,accent,warn,accent,accent,accent] }]
+  },
+  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => '$' + Math.round(v/1000) + 'K' } } } }
+});
+</script>
+
+</body>
+</html>
