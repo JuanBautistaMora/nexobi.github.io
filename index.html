@@ -493,6 +493,9 @@ body.solo-encuesta .bottomnav { display: none; }
     <div class="nav-item" onclick="showScreen('costos', this)">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.5c0 3 5.6 1.5 5.6 4.5A3 3 0 0 1 9 16.5M12 6v12"/></svg> Mis costos
     </div>
+    <div class="nav-item" onclick="showScreen('impuestos', this)">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7z"/><path d="M9 12h6M9 16h4"/></svg> Mis impuestos
+    </div>
     <div class="nav-item" onclick="showScreen('caja', this)">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M11 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M18 14v4M15 16v2M21 15v3"/></svg> Proyección de caja
     </div>
@@ -624,6 +627,13 @@ body.solo-encuesta .bottomnav { display: none; }
           <div>
             <b>De dónde salen estos datos?</b>
             <span>Mirá las fuentes conectadas</span>
+          </div>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+        <div class="atajo-fuentes" onclick="abrirImpuestos()">
+          <div>
+            <b>Cuánto vas a pagar de impuestos?</b>
+            <span>Mirá el estimado del mes</span>
           </div>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
         </div>
@@ -1099,6 +1109,142 @@ body.solo-encuesta .bottomnav { display: none; }
         </div>
       </div>
 
+      <!-- IMPUESTOS -->
+      <div class="screen" id="screen-impuestos">
+
+        <div style="display:flex;align-items:flex-start;gap:8px;background:var(--bg-accent);border:0.5px solid var(--border-accent);border-radius:var(--radius);padding:10px 13px;font-size:11.5px;color:var(--text-accent);margin-bottom:14px;line-height:1.5">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          <span><b>Nexo BI estima, tu contador liquida.</b> Estos números salen de tus datos reales y sirven para que llegues a los vencimientos sin sorpresas. La liquidación y la presentación siguen siendo de tu contador.</span>
+        </div>
+
+        <div class="lp-opts" style="margin-bottom:16px" id="imp-toggle">
+          <span class="lp-opt on" onclick="impSet('ri')">Responsable Inscripto</span>
+          <span class="lp-opt" onclick="impSet('mono')">Monotributo</span>
+        </div>
+
+        <!-- Vista Responsable Inscripto -->
+        <div id="imp-ri">
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">IVA estimado de julio</div>
+              <div class="kpi-val">$1.136.000</div>
+              <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Vence el 18 de agosto</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">IIBB CABA estimado</div>
+              <div class="kpi-val">$148.000</div>
+              <div class="kpi-sub">Mismo vencimiento, el 18</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Provisión Ganancias</div>
+              <div class="kpi-val">$610.000</div>
+              <div class="kpi-sub">Por mes, para que el cierre anual no sorprenda</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Carga impositiva del mes</div>
+              <div class="kpi-val">15,7%</div>
+              <div class="kpi-sub">De cada $100 que facturás</div>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="card">
+              <div class="card-title">Cómo se arma el IVA de julio</div>
+              <div class="card-sub">Estimado con tus ventas y compras del mes</div>
+              <div class="table-wrap" style="margin-top:8px">
+                <table>
+                  <tbody>
+                    <tr><td>Débito fiscal (21% de tus ventas)</td><td style="text-align:right">$2.526.000</td></tr>
+                    <tr><td>Crédito fiscal (IVA de tus compras)</td><td style="text-align:right;color:var(--text-success)">-$1.390.000</td></tr>
+                    <tr><td style="font-weight:600">A pagar el 18 de agosto</td><td style="text-align:right;font-weight:600">$1.136.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="margin-top:12px;padding:9px 12px;background:var(--bg-success);border:0.5px solid var(--border-success);border-radius:var(--radius);font-size:11.5px;color:var(--text-success)">El crédito fiscal de los equipos que compraste en agosto te bajó el saldo de este mes.</div>
+            </div>
+            <div class="card">
+              <div class="card-title">Lo que viene en agosto</div>
+              <div class="card-sub">Para que la caja no se entere de golpe</div>
+              <div class="table-wrap" style="margin-top:8px">
+                <table>
+                  <thead><tr><th>Fecha</th><th>Concepto</th><th>Estimado</th></tr></thead>
+                  <tbody>
+                    <tr><td>18 ago</td><td>IVA julio</td><td>$1.136.000</td></tr>
+                    <tr><td>18 ago</td><td>IIBB julio</td><td>$148.000</td></tr>
+                    <tr><td>Todo el mes</td><td>Apartar para Ganancias</td><td>$610.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="margin-top:12px;padding:9px 12px;background:var(--bg-warning);border:0.5px solid var(--border-warning);border-radius:var(--radius);font-size:11.5px;color:var(--text-warning)">El 18 de agosto los impuestos caen el mismo día que el alquiler y los sueldos. Está contemplado en tu proyección de caja.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vista Monotributo -->
+        <div id="imp-mono" style="display:none">
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Tu categoría actual</div>
+              <div class="kpi-val">G</div>
+              <div class="kpi-sub">Servicios</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Facturado últimos 12 meses</div>
+              <div class="kpi-val">$59,2M</div>
+              <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> 87% del tope de tu categoría</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Cuota de agosto</div>
+              <div class="kpi-val">$142.400</div>
+              <div class="kpi-sub">Vence el 20 de agosto</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">A este ritmo</div>
+              <div class="kpi-val">Octubre</div>
+              <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Mes en que superás el tope</div>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="card">
+              <div class="card-title">Semáforo del monotributo</div>
+              <div class="card-sub">Facturación acumulada contra el tope de tu categoría</div>
+              <div style="margin-top:14px">
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-secondary);margin-bottom:5px">
+                  <span>$59.200.000 facturados</span>
+                  <span>Tope G: $68.000.000</span>
+                </div>
+                <div style="background:var(--surface-1);border:0.5px solid var(--border);border-radius:99px;height:16px;overflow:hidden">
+                  <div style="width:87%;height:100%;background:linear-gradient(90deg,#57a14e 55%,#e0a63a 80%,#e34948);border-radius:99px"></div>
+                </div>
+              </div>
+              <div style="margin-top:14px;padding:9px 12px;background:var(--bg-warning);border:0.5px solid var(--border-warning);border-radius:var(--radius);font-size:11.5px;color:var(--text-warning)">Si seguís facturando a este ritmo, en octubre superás el tope de tu categoría. Hablalo con tu contador ahora y no en la recategorización de enero, cuando ya no hay margen para acomodar nada.</div>
+            </div>
+            <div class="card">
+              <div class="card-title">Tu cuota, abierta</div>
+              <div class="card-sub">Qué estás pagando cada mes</div>
+              <div class="table-wrap" style="margin-top:8px">
+                <table>
+                  <tbody>
+                    <tr><td>Componente impositivo</td><td style="text-align:right">$38.700</td></tr>
+                    <tr><td>Aporte jubilatorio (SIPA)</td><td style="text-align:right">$61.300</td></tr>
+                    <tr><td>Obra social</td><td style="text-align:right">$42.400</td></tr>
+                    <tr><td style="font-weight:600">Total agosto</td><td style="text-align:right;font-weight:600">$142.400</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="margin-top:12px;padding:9px 12px;background:var(--surface-1);border:0.5px solid var(--border);border-radius:var(--radius);font-size:11.5px;color:var(--text-secondary)">Si pasás a la categoría H, la cuota sube a $198.900. Conviene tener ese salto anticipado en la proyección de caja.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>Te serviría anticipar los impuestos así?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+      </div>
+
       <!-- ================= ENCUESTA UNIFICADA ================= -->
       <div class="screen" id="screen-encuesta">
       <div class="lp-page">
@@ -1319,6 +1465,7 @@ function showScreen(name, el) {
     onboarding: ['Cómo empezar', 'Paso 1 de 2 · Conectá tus fuentes'],
     plan: ['Mi plan', 'Starter, Growth o Pro según lo que necesites'],
     costos: ['En qué se va la plata?', 'Costos fijos y variables · Julio 2026'],
+    impuestos: ['Cuánto voy a pagar de impuestos?', 'Estimado del mes · Julio 2026'],
     encuesta: ['Encuesta de validación', 'Lo que ve quien recibe el link']
   };
   document.getElementById('page-title').textContent = titles[name][0];
@@ -1343,6 +1490,15 @@ function irEncuesta() {
   const bn = document.getElementById('bn-encuesta');
   if (bn && bn.offsetParent !== null) { bn.click(); }
   else { const nav = document.querySelector('.nav-encuesta'); if (nav) nav.click(); }
+  window.scrollTo(0, 0);
+}
+function impSet(cual) {
+  document.getElementById('imp-ri').style.display = cual === 'ri' ? 'block' : 'none';
+  document.getElementById('imp-mono').style.display = cual === 'mono' ? 'block' : 'none';
+}
+function abrirImpuestos() {
+  const el = document.querySelector('.sidebar .nav-item[onclick*="impuestos"]');
+  if (el) el.click();
   window.scrollTo(0, 0);
 }
 function abrirFuentes() {
