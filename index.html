@@ -1409,8 +1409,9 @@ body.solo-encuesta .bottomnav { display: none; }
                   <span class="lp-opt" data-v="Sí, es un impedimento">Sí, es un impedimento</span>
                 </div>
               </div>
-              <div class="lp-field">
-                <label for="lp-duda">Qué te haría dudar antes de contratarlo? <span class="lp-optional">Opcional</span></label>
+                            <div class="lp-field">
+                <label for="lp-duda">Algún comentario o feedback?</label>
+                <div style="font-size:11px;color:var(--text-muted);margin:-2px 0 6px;line-height:1.45">Lo que se te ocurra. Qué te gustó, qué le falta, qué te haría dudar. Es la parte que más nos sirve.</div>
                 <input type="text" id="lp-duda" placeholder="Escribí lo primero que se te venga">
               </div>
 
@@ -1611,6 +1612,16 @@ document.getElementById('lp-form-combinada').addEventListener('submit', function
   if (!rubro) { alert('Contanos a qué se dedica la empresa.'); lpScroll('lp-form-unica'); return; }
   if (!plan) { alert('Elegí una opción de plan, aunque sea "Ninguno a estos precios".'); return; }
   if (!nombre || !mail.includes('@')) { alert('Completá nombre y un mail válido para sumarte.'); return; }
+  // El comentario abierto es lo que más valor aporta. Se insiste una vez,
+  // pero no se bloquea el envío para no perder el resto de las respuestas.
+  var duda = document.getElementById('lp-duda');
+  if (!duda.value.trim() && !window._insistido) {
+    window._insistido = true;
+    duda.focus();
+    duda.scrollIntoView({ block: 'center' });
+    alert('Nos ayudaría muchísimo tu comentario, aunque sea una línea. Si preferís no dejarlo, tocá enviar de nuevo.');
+    return;
+  }
 
   const todo = {
     nombre: nombre, mail: mail, telefono: telefono, rubro: rubro,
