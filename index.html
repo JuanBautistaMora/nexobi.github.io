@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B2NCPH09DG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B2NCPH09DG');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexo BI — Beltrán Consultoría</title>
+<title>Nexo BI</title>
+<meta property="og:title" content="Nexo BI">
+<meta property="og:description" content="De tus datos a tus decisiones. Gestión financiera simple para PyMEs.">
 <style>
 :root {
   --surface-0: #f1f0e8;
@@ -366,7 +377,7 @@ body.solo-encuesta .cierre-encuesta { display: none; }
     gap: 4px;
     padding: 6px 2px;
     border: none;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 500;
     line-height: 1.2;
     color: var(--text-secondary);
@@ -469,8 +480,8 @@ body.solo-encuesta .bottomnav { display: none; }
   <div class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-brand">Mi negocio</div>
-      <div class="logo-biz">Beltrán Consultoría</div>
-      <div class="logo-period"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16"/></svg> Mayo 2025</div>
+      <div class="logo-biz">Tablero financiero</div>
+      <div class="logo-period"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16"/></svg> Julio 2026</div>
     </div>
     <div class="nav-section">Financiero</div>
     <div class="nav-item active" onclick="showScreen('resumen', this)">
@@ -478,6 +489,9 @@ body.solo-encuesta .bottomnav { display: none; }
     </div>
     <div class="nav-item" onclick="showScreen('clientes', this)">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="12" width="5" height="8" rx="1"/><rect x="9.5" y="8" width="5" height="12" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/></svg> Mis clientes
+    </div>
+    <div class="nav-item" onclick="showScreen('costos', this)">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.5c0 3 5.6 1.5 5.6 4.5A3 3 0 0 1 9 16.5M12 6v12"/></svg> Mis costos
     </div>
     <div class="nav-item" onclick="showScreen('caja', this)">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M11 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M18 14v4M15 16v2M21 15v3"/></svg> Proyección de caja
@@ -504,23 +518,23 @@ body.solo-encuesta .bottomnav { display: none; }
     </div>
     </div><!-- /Cuenta oculta -->
     <div class="sidebar-footer">
-      <div>Próxima sesión con Nexo</div>
-      <div style="font-weight:600; color:var(--text-secondary); margin-top:2px;">12 de junio · 11 hs</div>
+      <div>Próxima sesión con Nexo BI</div>
+      <div style="font-weight:600; color:var(--text-secondary); margin-top:2px;">12 de agosto · 11 hs</div>
     </div>
   </div>
 
   <div class="main">
     <div class="topbar">
       <div>
-        <div class="page-title" id="page-title">¿Cuánto gané este mes?</div>
-        <div class="page-sub" id="page-sub">Mayo 2025 · Actualizado hoy a las 8:14</div>
+        <div class="page-title" id="page-title">Cuánto gané este mes?</div>
+        <div class="page-sub" id="page-sub">Julio 2026 · Actualizado hoy a las 8:14</div>
       </div>
       <div style="font-size:11px; color:var(--text-muted);">Nexo BI</div>
     </div>
 
     <div class="alert-strip" id="alert-strip">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M10.24 3.957 1.999 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.76 3.957a2 2 0 0 0-3.52 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-      <strong>Atención:</strong> El 18 de junio se juntan tres vencimientos. La caja puede quedar corta si no entra el cobro de Grupo Palermo antes de esa fecha.
+      <strong>Atención:</strong> El 18 de agosto se juntan tres vencimientos. La caja puede quedar corta si no entra el cobro de Grupo Palermo antes de esa fecha.
     </div>
 
     <div class="content">
@@ -531,7 +545,7 @@ body.solo-encuesta .bottomnav { display: none; }
           <div class="kpi">
             <div class="kpi-label">Lo que me quedó</div>
             <div class="kpi-val">$3.420.000</div>
-            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> Mejor que abril (+8%)</div>
+            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> Mejor que junio (+8%)</div>
           </div>
           <div class="kpi">
             <div class="kpi-label">De cada $100 que facturé</div>
@@ -541,12 +555,12 @@ body.solo-encuesta .bottomnav { display: none; }
           <div class="kpi">
             <div class="kpi-label">Caja ahora mismo</div>
             <div class="kpi-val">$1.820.000</div>
-            <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Riesgo el 18 de junio</div>
+            <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Riesgo el 18 de agosto</div>
           </div>
           <div class="kpi">
             <div class="kpi-label">Lo que facturé</div>
             <div class="kpi-val">$12.030.000</div>
-            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> +12% vs abril</div>
+            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> +12% vs junio</div>
           </div>
         </div>
         <div class="two-col">
@@ -554,7 +568,7 @@ body.solo-encuesta .bottomnav { display: none; }
             <div class="card-title">Cómo vengo en el año</div>
             <div class="card-sub">Resultado neto mensual en pesos</div>
             <div >
-              <div class="chart-d"><svg viewBox="0 0 390 165" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="46" y1="139.0" x2="378" y2="139.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="142.5" font-size="10.0" fill="#898781" text-anchor="end">$1.6M</text><line x1="46" y1="97.3" x2="378" y2="97.3" stroke="rgba(0,0,0,0.07)"/><text x="39" y="100.8" font-size="10.0" fill="#898781" text-anchor="end">$2.3M</text><line x1="46" y1="55.7" x2="378" y2="55.7" stroke="rgba(0,0,0,0.07)"/><text x="39" y="59.2" font-size="10.0" fill="#898781" text-anchor="end">$3.0M</text><line x1="46" y1="14.0" x2="378" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="17.5" font-size="10.0" fill="#898781" text-anchor="end">$3.7M</text><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5 L378.0 139 L46.0 139 Z" fill="rgba(42,120,214,0.10)"/><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46.0" cy="110.4" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="112.4" cy="92.2" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="178.8" cy="122.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="245.2" cy="68.0" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="311.6" cy="43.8" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="378.0" cy="30.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="46.0" y="159" font-size="10.0" fill="#898781" text-anchor="start">Dic</text><text x="112.4" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Ene</text><text x="178.8" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Feb</text><text x="245.2" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Mar</text><text x="311.6" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Abr</text><text x="378.0" y="159" font-size="10.0" fill="#898781" text-anchor="end">May</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 175" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="48" y1="148.0" x2="328" y2="148.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="151.7" font-size="10.5" fill="#898781" text-anchor="end">$1.6M</text><line x1="48" y1="103.3" x2="328" y2="103.3" stroke="rgba(0,0,0,0.07)"/><text x="41" y="107.0" font-size="10.5" fill="#898781" text-anchor="end">$2.3M</text><line x1="48" y1="58.7" x2="328" y2="58.7" stroke="rgba(0,0,0,0.07)"/><text x="41" y="62.3" font-size="10.5" fill="#898781" text-anchor="end">$3.0M</text><line x1="48" y1="14.0" x2="328" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="17.7" font-size="10.5" fill="#898781" text-anchor="end">$3.7M</text><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7 L328.0 148 L48.0 148 Z" fill="rgba(42,120,214,0.10)"/><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="48.0" cy="117.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="104.0" cy="97.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="160.0" cy="130.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="216.0" cy="71.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="272.0" cy="46.0" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="328.0" cy="31.7" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="48.0" y="168" font-size="10.5" fill="#898781" text-anchor="start">Dic</text><text x="104.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Ene</text><text x="160.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Feb</text><text x="216.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Mar</text><text x="272.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Abr</text><text x="328.0" y="168" font-size="10.5" fill="#898781" text-anchor="end">May</text></svg></div>
+              <div class="chart-d"><svg viewBox="0 0 390 165" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="46" y1="139.0" x2="378" y2="139.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="142.5" font-size="10.0" fill="#898781" text-anchor="end">$1.6M</text><line x1="46" y1="97.3" x2="378" y2="97.3" stroke="rgba(0,0,0,0.07)"/><text x="39" y="100.8" font-size="10.0" fill="#898781" text-anchor="end">$2.3M</text><line x1="46" y1="55.7" x2="378" y2="55.7" stroke="rgba(0,0,0,0.07)"/><text x="39" y="59.2" font-size="10.0" fill="#898781" text-anchor="end">$3.0M</text><line x1="46" y1="14.0" x2="378" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="17.5" font-size="10.0" fill="#898781" text-anchor="end">$3.7M</text><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5 L378.0 139 L46.0 139 Z" fill="rgba(42,120,214,0.10)"/><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46.0" cy="110.4" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="112.4" cy="92.2" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="178.8" cy="122.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="245.2" cy="68.0" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="311.6" cy="43.8" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="378.0" cy="30.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="46.0" y="159" font-size="10.0" fill="#898781" text-anchor="start">Feb</text><text x="112.4" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Mar</text><text x="178.8" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Abr</text><text x="245.2" y="159" font-size="10.0" fill="#898781" text-anchor="middle">May</text><text x="311.6" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Jun</text><text x="378.0" y="159" font-size="10.0" fill="#898781" text-anchor="end">Jul</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 175" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="48" y1="148.0" x2="328" y2="148.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="151.7" font-size="10.5" fill="#898781" text-anchor="end">$1.6M</text><line x1="48" y1="103.3" x2="328" y2="103.3" stroke="rgba(0,0,0,0.07)"/><text x="41" y="107.0" font-size="10.5" fill="#898781" text-anchor="end">$2.3M</text><line x1="48" y1="58.7" x2="328" y2="58.7" stroke="rgba(0,0,0,0.07)"/><text x="41" y="62.3" font-size="10.5" fill="#898781" text-anchor="end">$3.0M</text><line x1="48" y1="14.0" x2="328" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="17.7" font-size="10.5" fill="#898781" text-anchor="end">$3.7M</text><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7 L328.0 148 L48.0 148 Z" fill="rgba(42,120,214,0.10)"/><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="48.0" cy="117.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="104.0" cy="97.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="160.0" cy="130.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="216.0" cy="71.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="272.0" cy="46.0" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="328.0" cy="31.7" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="48.0" y="168" font-size="10.5" fill="#898781" text-anchor="start">Feb</text><text x="104.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Mar</text><text x="160.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Abr</text><text x="216.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">May</text><text x="272.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Jun</text><text x="328.0" y="168" font-size="10.5" fill="#898781" text-anchor="end">Jul</text></svg></div>
             </div>
           </div>
           <div class="card">
@@ -564,7 +578,7 @@ body.solo-encuesta .bottomnav { display: none; }
               <div class="alert-item danger">
                 <svg class="ic alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 3l5.2 6.5a6.6 6.6 0 1 1-10.4 0z"/></svg>
                 <div>
-                  <div class="alert-title">Caja en riesgo el 18 de junio</div>
+                  <div class="alert-title">Caja en riesgo el 18 de agosto</div>
                   <div class="alert-desc">Se juntan IIBB, alquiler y sueldos. Si Grupo Palermo no paga antes, la caja queda en $272.000.</div>
                 </div>
               </div>
@@ -585,31 +599,37 @@ body.solo-encuesta .bottomnav { display: none; }
             </div>
           </div>
         </div>
-        <div class="section-label">Dónde se fue la plata este mes</div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Concepto</th><th>Importe</th><th>Del total facturado</th></tr></thead>
-            <tbody>
-              <tr><td>Sueldos y cargas sociales</td><td>$5.210.000</td><td style="color:var(--text-secondary)">43,3%</td></tr>
-              <tr><td>Alquiler y servicios</td><td>$1.480.000</td><td style="color:var(--text-secondary)">12,3%</td></tr>
-              <tr><td>Impuestos y cargas fiscales</td><td>$980.000</td><td style="color:var(--text-secondary)">8,1%</td></tr>
-              <tr><td>Proveedores y gastos operativos</td><td>$740.000</td><td style="color:var(--text-secondary)">6,2%</td></tr>
-              <tr><td>Otros costos imputados</td><td>$200.000</td><td style="color:var(--text-secondary)">1,7%</td></tr>
-              <tr><td style="font-weight:600">Lo que te quedó</td><td style="font-weight:600">$3.420.000</td><td style="color:var(--text-success);font-weight:600">28,4%</td></tr>
-            </tbody>
-          </table>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title">En qué se divide cada $100 que facturás</div>
+            <div class="card-sub">Julio 2026</div>
+            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:6px"><svg viewBox="0 0 185 185" width="185" style="max-width:100%;height:auto;display:block;flex-shrink:0" role="img"><path d="M 92.50 17.50 A 75.00 75.00 0 0 1 124.58 160.29" fill="none" stroke="#2a78d6" stroke-width="27" stroke-linecap="butt"/><path d="M 123.15 160.95 A 75.00 75.00 0 0 1 68.13 163.43" fill="none" stroke="#6fa3e0" stroke-width="27" stroke-linecap="butt"/><path d="M 66.65 162.91 A 75.00 75.00 0 0 1 36.66 142.57" fill="none" stroke="#a9c7ed" stroke-width="27" stroke-linecap="butt"/><path d="M 35.62 141.39 A 75.00 75.00 0 0 1 21.83 117.61" fill="none" stroke="#8a8880" stroke-width="27" stroke-linecap="butt"/><path d="M 21.32 116.12 A 75.00 75.00 0 0 1 19.55 109.93" fill="none" stroke="#c2c0b8" stroke-width="27" stroke-linecap="butt"/><path d="M 19.20 108.40 A 75.00 75.00 0 0 1 90.93 17.52" fill="none" stroke="#57a14e" stroke-width="27" stroke-linecap="butt"/><text x="92.5" y="90.5" font-size="20.9" font-weight="700" fill="#0b0b0b" text-anchor="middle">$28,40</text><text x="92.5" y="107.9" font-size="10.4" fill="#898781" text-anchor="middle">es tuyo</text></svg><div style="display:flex;flex-direction:column;gap:7px;font-size:11.5px;color:var(--text-secondary);min-width:150px">
+<div><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#2a78d6;margin-right:7px"></span>Sueldos y cargas · $43,30</div>
+<div><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#6fa3e0;margin-right:7px"></span>Alquiler y servicios · $12,30</div>
+<div><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#a9c7ed;margin-right:7px"></span>Impuestos · $8,10</div>
+<div><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#8a8880;margin-right:7px"></span>Proveedores · $6,20</div>
+<div><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#c2c0b8;margin-right:7px"></span>Otros · $1,70</div>
+<div style="font-weight:700;color:var(--text-success)"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#57a14e;margin-right:7px"></span>Lo que te queda · $28,40</div>
+</div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Tu margen contra el rubro</div>
+            <div class="card-sub">Margen neto sobre facturación, empresas similares</div>
+            <div style="padding-top:10px"><svg viewBox="0 0 380 130" width="100%" style="height:auto;display:block" role="img"><text x="0" y="15.5" font-size="11.5" fill="#52514e">Vos, este mes</text><rect x="0" y="21.2" width="267.0" height="17.2" rx="5" fill="#2a78d6"/><text x="275.0" y="35.0" font-size="11.5" font-weight="700" fill="#0b0b0b">28,4%</text><text x="0" y="56.9" font-size="11.5" fill="#52514e">Promedio del rubro</text><rect x="0" y="62.6" width="178.6" height="17.2" rx="5" fill="#b3b1aa"/><text x="186.6" y="76.5" font-size="11.5" font-weight="700" fill="#0b0b0b">19,0%</text><text x="0" y="98.3" font-size="11.5" fill="#52514e">El top 25% del rubro</text><rect x="0" y="104.0" width="310.2" height="17.2" rx="5" fill="#57a14e"/><text x="318.2" y="117.8" font-size="11.5" font-weight="700" fill="#0b0b0b">33,0%</text></svg></div>
+            <div style="margin-top:12px;padding:9px 12px;background:var(--bg-success);border:0.5px solid var(--border-success);border-radius:var(--radius);font-size:11.5px;color:var(--text-success)">Estás 9 puntos arriba del promedio. Al top 25% le sacás 4,6 de distancia.</div>
+          </div>
         </div>
       
         <div class="atajo-fuentes" onclick="abrirFuentes()">
           <div>
-            <b>¿De dónde salen estos datos?</b>
+            <b>De dónde salen estos datos?</b>
             <span>Mirá las fuentes conectadas</span>
           </div>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
         </div>
         <div class="cierre-encuesta">
           <div class="cierre-encuesta-txt">
-            <b>¿Te serviría tener esto en tu empresa?</b>
+            <b>Te serviría tener esto en tu empresa?</b>
             <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
           </div>
           <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
@@ -643,7 +663,7 @@ body.solo-encuesta .bottomnav { display: none; }
       
         <div class="cierre-encuesta">
           <div class="cierre-encuesta-txt">
-            <b>¿Te serviría ver esto de tu negocio?</b>
+            <b>Te serviría ver esto de tu negocio?</b>
             <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
           </div>
           <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
@@ -656,7 +676,7 @@ body.solo-encuesta .bottomnav { display: none; }
           <div class="sc-card">
             <div class="sc-label">Si Grupo Palermo no paga</div>
             <div class="sc-val">$680.000</div>
-            <div class="sc-note">Caja mínima el 18 de junio</div>
+            <div class="sc-note">Caja mínima el 18 de agosto</div>
           </div>
           <div class="sc-card base">
             <div class="sc-label">Si todo sale según lo acordado</div>
@@ -666,7 +686,7 @@ body.solo-encuesta .bottomnav { display: none; }
           <div class="sc-card">
             <div class="sc-label">Si Grupo Palermo paga antes</div>
             <div class="sc-val">$1.920.000</div>
-            <div class="sc-note">Caja holgada en junio</div>
+            <div class="sc-note">Caja holgada en agosto</div>
           </div>
         </div>
         <div class="card" style="margin-bottom:14px;">
@@ -676,22 +696,22 @@ body.solo-encuesta .bottomnav { display: none; }
             <div class="chart-d"><svg viewBox="0 0 820 205" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="50" y1="177.0" x2="808" y2="177.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="180.8" font-size="11.0" fill="#898781" text-anchor="end">$0.72M</text><line x1="50" y1="123.0" x2="808" y2="123.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="126.8" font-size="11.0" fill="#898781" text-anchor="end">$1.14M</text><line x1="50" y1="69.0" x2="808" y2="69.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="72.8" font-size="11.0" fill="#898781" text-anchor="end">$1.57M</text><line x1="50" y1="15.0" x2="808" y2="15.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="18.9" font-size="11.0" fill="#898781" text-anchor="end">$1.99M</text><path d="M50.0 36.4 L201.6 58.2 L353.2 155.6 L504.8 112.0 L656.4 72.3 L808.0 41.6 L808.0 177 L50.0 177 Z" fill="rgba(42,120,214,0.10)"/><path d="M50.0 36.4 L201.6 58.2 L353.2 155.6 L504.8 112.0 L656.4 72.3 L808.0 41.6" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="50.0" cy="36.4" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="201.6" cy="58.2" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="353.2" cy="155.6" r="5.5" fill="#e34948" stroke="#fff" stroke-width="1.6"/><circle cx="504.8" cy="112.0" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="656.4" cy="72.3" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="808.0" cy="41.6" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="50.0" y="198" font-size="11.0" fill="#898781" text-anchor="start">Sem 1</text><text x="201.6" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 2</text><text x="353.2" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 3</text><text x="504.8" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 4</text><text x="656.4" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 5</text><text x="808.0" y="198" font-size="11.0" fill="#898781" text-anchor="end">Sem 6</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 185" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="48" y1="158.0" x2="328" y2="158.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="161.7" font-size="10.5" fill="#898781" text-anchor="end">$0.72M</text><line x1="48" y1="110.0" x2="328" y2="110.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="113.7" font-size="10.5" fill="#898781" text-anchor="end">$1.14M</text><line x1="48" y1="62.0" x2="328" y2="62.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="65.7" font-size="10.5" fill="#898781" text-anchor="end">$1.57M</text><line x1="48" y1="14.0" x2="328" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="17.7" font-size="10.5" fill="#898781" text-anchor="end">$1.99M</text><path d="M48.0 33.1 L104.0 52.4 L160.0 138.9 L216.0 100.2 L272.0 64.9 L328.0 37.6 L328.0 158 L48.0 158 Z" fill="rgba(42,120,214,0.10)"/><path d="M48.0 33.1 L104.0 52.4 L160.0 138.9 L216.0 100.2 L272.0 64.9 L328.0 37.6" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="48.0" cy="33.1" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="104.0" cy="52.4" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="160.0" cy="138.9" r="5.2" fill="#e34948" stroke="#fff" stroke-width="1.6"/><circle cx="216.0" cy="100.2" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="272.0" cy="64.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="328.0" cy="37.6" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="48.0" y="178" font-size="10.5" fill="#898781" text-anchor="start">Sem 1</text><text x="104.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 2</text><text x="160.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 3</text><text x="216.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 4</text><text x="272.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 5</text><text x="328.0" y="178" font-size="10.5" fill="#898781" text-anchor="end">Sem 6</text></svg></div>
           </div>
         </div>
-        <div class="section-label">Lo que entra y sale en junio</div>
+        <div class="section-label">Lo que entra y sale en agosto</div>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Fecha</th><th>Qué es</th><th>Impacto en caja</th></tr></thead>
             <tbody>
-              <tr><td>10 jun</td><td>Alquiler</td><td style="color:var(--text-danger)">-$380.000</td></tr>
-              <tr><td>13 jun</td><td>Sueldos (8 personas)</td><td style="color:var(--text-danger)">-$620.000</td></tr>
-              <tr><td>18 jun</td><td>IIBB mayo</td><td style="color:var(--text-danger)">-$148.000</td></tr>
-              <tr><td>20 jun</td><td>Cobro Grupo Palermo</td><td style="color:var(--text-success)">+$960.000</td></tr>
+              <tr><td>10 ago</td><td>Alquiler</td><td style="color:var(--text-danger)">-$380.000</td></tr>
+              <tr><td>13 ago</td><td>Sueldos (8 personas)</td><td style="color:var(--text-danger)">-$620.000</td></tr>
+              <tr><td>18 ago</td><td>IIBB julio</td><td style="color:var(--text-danger)">-$148.000</td></tr>
+              <tr><td>20 ago</td><td>Cobro Grupo Palermo</td><td style="color:var(--text-success)">+$960.000</td></tr>
             </tbody>
           </table>
         </div>
       
         <div class="cierre-encuesta">
           <div class="cierre-encuesta-txt">
-            <b>¿Te serviría saber esto con anticipación?</b>
+            <b>Te serviría saber esto con anticipación?</b>
             <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
           </div>
           <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
@@ -730,7 +750,7 @@ body.solo-encuesta .bottomnav { display: none; }
             <div class="bench-delta down"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Más concentrado que el promedio</div>
           </div>
         </div>
-        <div class="section-label">Lo que hacen bien las consultoras con mejor flujo</div>
+        <div class="section-label">Lo que hacen bien las empresas con mejor flujo</div>
         <div class="practices-grid">
           <div class="prac-card">
             <div class="prac-title">Cobran en menos de 30 días</div>
@@ -739,7 +759,7 @@ body.solo-encuesta .bottomnav { display: none; }
           </div>
           <div class="prac-card">
             <div class="prac-title">Ningún cliente supera el 30% de la facturación</div>
-            <div class="prac-text">Las consultoras con ingresos más estables distribuyen la cartera activamente. Cuando un cliente concentra más del 35%, una pausa o salida impacta directo en la caja del mes.</div>
+            <div class="prac-text">Las empresas con ingresos más estables distribuyen la cartera activamente. Cuando un cliente concentra más del 35%, una pausa o salida impacta directo en la caja del mes.</div>
             <span class="prac-tag tag-opp">Tu oportunidad</span>
           </div>
           <div class="prac-card">
@@ -756,7 +776,7 @@ body.solo-encuesta .bottomnav { display: none; }
       
         <div class="cierre-encuesta">
           <div class="cierre-encuesta-txt">
-            <b>¿Te sumaría compararte con tu rubro?</b>
+            <b>Te sumaría compararte con tu rubro?</b>
             <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
           </div>
           <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
@@ -836,7 +856,7 @@ body.solo-encuesta .bottomnav { display: none; }
       
         <div class="cierre-encuesta">
           <div class="cierre-encuesta-txt">
-            <b>¿Conectarías tus datos así?</b>
+            <b>Conectarías tus datos así?</b>
             <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
           </div>
           <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
@@ -1012,6 +1032,73 @@ body.solo-encuesta .bottomnav { display: none; }
         </div>
       </div>
 
+      <!-- COSTOS -->
+      <div class="screen" id="screen-costos">
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Lo que cuesta operar</div>
+            <div class="kpi-val">$8.610.000</div>
+            <div class="kpi-sub">71,6% de lo facturado</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Costos fijos</div>
+            <div class="kpi-val">$6.690.000</div>
+            <div class="kpi-sub">Sueldos, alquiler y servicios</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Costos variables</div>
+            <div class="kpi-val">$1.920.000</div>
+            <div class="kpi-sub">Impuestos, proveedores y otros</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Estructura fija</div>
+            <div class="kpi-val">78%</div>
+            <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Piso alto si cae la venta</div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+<div class="section-label">Dónde se fue la plata este mes</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concepto</th><th>Importe</th><th>Del total facturado</th></tr></thead>
+            <tbody>
+              <tr><td>Sueldos y cargas sociales</td><td>$5.210.000</td><td style="color:var(--text-secondary)">43,3%</td></tr>
+              <tr><td>Alquiler y servicios</td><td>$1.480.000</td><td style="color:var(--text-secondary)">12,3%</td></tr>
+              <tr><td>Impuestos y cargas fiscales</td><td>$980.000</td><td style="color:var(--text-secondary)">8,1%</td></tr>
+              <tr><td>Proveedores y gastos operativos</td><td>$740.000</td><td style="color:var(--text-secondary)">6,2%</td></tr>
+              <tr><td>Otros costos imputados</td><td>$200.000</td><td style="color:var(--text-secondary)">1,7%</td></tr>
+              <tr><td style="font-weight:600">Lo que te quedó</td><td style="font-weight:600">$3.420.000</td><td style="color:var(--text-success);font-weight:600">28,4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Costos fijos, el piso de cada mes</div>
+            <div class="card-sub">Lo que pagás aunque no factures</div>
+            <div class="table-wrap" style="margin-top:8px">
+              <table>
+                <thead><tr><th>Concepto</th><th>Por mes</th></tr></thead>
+                <tbody>
+                  <tr><td>Sueldos y cargas sociales</td><td>$5.210.000</td></tr>
+                  <tr><td>Alquiler de oficina</td><td>$1.100.000</td></tr>
+                  <tr><td>Luz, internet y servicios</td><td>$380.000</td></tr>
+                  <tr><td style="font-weight:600">Total fijo</td><td style="font-weight:600">$6.690.000</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:12px;padding:10px 12px;background:var(--bg-warning);border:0.5px solid var(--border-warning);border-radius:var(--radius);font-size:11.5px;color:var(--text-warning)">Tu estructura es 78% fija. Si la facturación cae 20%, el margen neto pasa de 28,4% a 14,5%. Conviene vigilar este número antes de sumar costos fijos nuevos.</div>
+          </div>
+        </div>
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>Te serviría ver tus costos así de claros?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+      </div>
+
       <!-- ================= ENCUESTA UNIFICADA ================= -->
       <div class="screen" id="screen-encuesta">
       <div class="lp-page">
@@ -1026,7 +1113,7 @@ body.solo-encuesta .bottomnav { display: none; }
 
         <div class="lp-hero">
           <span class="lp-eyebrow">Para PyMEs</span>
-          <h1>¿Sabés cuánto ganaste el mes pasado, en neto, sin esperar al contador?</h1>
+          <h1>Sabés cuánto ganaste el mes pasado, en neto, sin esperar al contador?</h1>
           <p class="lp-sub">En la mayoría de las PyMEs, la ganancia real del mes recién se conoce cuando el contador cierra, semanas después. Nexo BI junta los datos del banco, la facturación y los gastos, y muestra en un solo tablero cuánto quedó de verdad y qué parte del negocio deja plata y cuál no. Como el que acabás de recorrer.</p>
           <button class="lp-cta" type="button" onclick="lpScroll('lp-form-unica')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 5v14M18 13l-6 6-6-6"/></svg> Quiero saber más</button>
           <div class="lp-ctanote">Son tres minutos. Estamos abriendo la lista de acceso anticipado.</div>
@@ -1057,7 +1144,7 @@ body.solo-encuesta .bottomnav { display: none; }
             <form id="lp-form-combinada" novalidate>
 
               <div class="lp-field">
-                <label>¿A qué se dedica la empresa?</label>
+                <label>A qué se dedica la empresa?</label>
                 <div class="lp-opts" data-campo="rubro">
                   <span class="lp-opt" data-v="Servicios">Servicios</span>
                   <span class="lp-opt" data-v="Comercio">Comercio</span>
@@ -1065,7 +1152,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>¿Cuántas personas trabajan?</label>
+                <label>Cuántas personas trabajan?</label>
                 <div class="lp-opts" data-campo="tamano">
                   <span class="lp-opt" data-v="Solo yo">Solo yo</span>
                   <span class="lp-opt" data-v="2 a 5">2 a 5</span>
@@ -1074,7 +1161,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>Hoy, ¿cómo saben cuánto ganó la empresa el mes pasado?</label>
+                <label>Hoy, cómo saben cuánto ganó la empresa el mes pasado?</label>
                 <div class="lp-opts" data-campo="metodo">
                   <span class="lp-opt" data-v="Espero al contador">Espero al contador</span>
                   <span class="lp-opt" data-v="Lo armo en Excel">Lo armo en Excel</span>
@@ -1083,7 +1170,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>¿Cada cuánto mirarías estos números?</label>
+                <label>Cada cuánto mirarías estos números?</label>
                 <div class="lp-opts" data-campo="frecuencia">
                   <span class="lp-opt" data-v="Todos los días">Todos los días</span>
                   <span class="lp-opt" data-v="Una vez por semana">Una vez por semana</span>
@@ -1092,7 +1179,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>¿Te sumaría poder comparar la empresa con otras del mismo rubro y zona?</label>
+                <label>Te sumaría poder comparar la empresa con otras del mismo rubro y zona?</label>
                 <div class="lp-opts" data-campo="benchmark">
                   <span class="lp-opt" data-v="Sí, mucho">Sí, mucho</span>
                   <span class="lp-opt" data-v="Puede ser">Puede ser</span>
@@ -1100,7 +1187,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>Sin ver precios todavía, ¿cuánto pagarías por mes por tener esto andando? <span class="lp-optional">Opcional</span></label>
+                <label>Sin ver precios todavía, cuánto pagarías por mes por tener esto andando? <span class="lp-optional">Opcional</span></label>
                 <div class="lp-opts" data-campo="precio">
                   <span class="lp-opt" data-v="Menos de USD 50">Menos de USD 50</span>
                   <span class="lp-opt" data-v="USD 50 a 100">USD 50 a 100</span>
@@ -1160,7 +1247,7 @@ body.solo-encuesta .bottomnav { display: none; }
               </div>
 
               <div class="lp-field">
-                <label>Si arrancaras hoy, ¿con qué plan lo harías?</label>
+                <label>Si arrancaras hoy, con qué plan lo harías?</label>
                 <div class="lp-opts" data-campo="plan">
                   <span class="lp-opt" data-v="Starter USD 49">Starter USD 49</span>
                   <span class="lp-opt" data-v="Growth USD 99">Growth USD 99</span>
@@ -1169,7 +1256,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label>El onboarding único de USD 150, ¿te frena?</label>
+                <label>El onboarding único de USD 150, te frena?</label>
                 <div class="lp-opts" data-campo="onboarding">
                   <span class="lp-opt" data-v="No, me parece razonable">No, me parece razonable</span>
                   <span class="lp-opt" data-v="Lo pagaría en cuotas">Lo pagaría en cuotas</span>
@@ -1177,7 +1264,7 @@ body.solo-encuesta .bottomnav { display: none; }
                 </div>
               </div>
               <div class="lp-field">
-                <label for="lp-duda">¿Qué te haría dudar antes de contratarlo? <span class="lp-optional">Opcional</span></label>
+                <label for="lp-duda">Qué te haría dudar antes de contratarlo? <span class="lp-optional">Opcional</span></label>
                 <input type="text" id="lp-duda" placeholder="Escribí lo primero que se te venga">
               </div>
 
@@ -1224,13 +1311,14 @@ function showScreen(name, el) {
   document.getElementById('screen-' + name).classList.add('active');
   el.classList.add('active');
   const titles = {
-    resumen: ['¿Cuánto gané este mes?', 'Mayo 2025 · Actualizado hoy a las 8:14'],
-    clientes: ['¿Qué cliente me deja más margen?', 'Rentabilidad real por cliente · Mayo 2025'],
-    caja: ['¿Me alcanza la plata para lo que viene?', 'Proyección de caja · Próximas 6 semanas'],
+    resumen: ['Cuánto gané este mes?', 'Julio 2026 · Actualizado hoy a las 8:14'],
+    clientes: ['Qué cliente me deja más margen?', 'Rentabilidad real por cliente · Julio 2026'],
+    caja: ['Me alcanza la plata para lo que viene?', 'Proyección de caja · Próximas 6 semanas'],
     fuentes: ['De dónde vienen los datos', 'Fuentes conectadas · Actualización automática'],
-    benchmark: ['¿Cómo estoy respecto a otras consultoras?', 'Consultoría y servicios profesionales · CABA y GBA'],
+    benchmark: ['Cómo estoy contra la competencia?', 'Empresas similares a la tuya · CABA y GBA'],
     onboarding: ['Cómo empezar', 'Paso 1 de 2 · Conectá tus fuentes'],
     plan: ['Mi plan', 'Starter, Growth o Pro según lo que necesites'],
+    costos: ['En qué se va la plata?', 'Costos fijos y variables · Julio 2026'],
     encuesta: ['Encuesta de validación', 'Lo que ve quien recibe el link']
   };
   document.getElementById('page-title').textContent = titles[name][0];
@@ -1245,6 +1333,7 @@ function showScreen(name, el) {
 <nav class="bottomnav" id="bottomnav">
   <div class="nav-item active" onclick="showScreen('resumen', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/><path d="M10 21v-6h4v6"/></svg><span>Resumen</span></div>
   <div class="nav-item" onclick="showScreen('clientes', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="12" width="5" height="8" rx="1"/><rect x="9.5" y="8" width="5" height="12" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/></svg><span>Clientes</span></div>
+  <div class="nav-item" onclick="showScreen('costos', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.5c0 3 5.6 1.5 5.6 4.5A3 3 0 0 1 9 16.5M12 6v12"/></svg><span>Costos</span></div>
   <div class="nav-item bn-encuesta" id="bn-encuesta" onclick="showScreen('encuesta', this)"><span class="bn-fab"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></span><span>Tu opinión</span></div>
   <div class="nav-item" onclick="showScreen('caja', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M11 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M18 14v4M15 16v2M21 15v3"/></svg><span>Caja</span></div>
   <div class="nav-item" onclick="showScreen('benchmark', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="8" r="2.5"/><path d="M8 21v-2a4 4 0 0 1 8 0v2"/><circle cx="5" cy="10" r="2"/><path d="M2 20v-1.5A3 3 0 0 1 5 16"/><circle cx="19" cy="10" r="2"/><path d="M22 20v-1.5a3 3 0 0 0-3-2.5"/></svg><span>Benchmark</span></div>
@@ -1409,5 +1498,33 @@ document.getElementById('lp-form-combinada').addEventListener('submit', function
 })();
 </script>
 
+<script>
+(function () {
+  function ev(nombre, extra) {
+    if (typeof gtag === 'function') gtag('event', nombre, extra || {});
+  }
+  // Cada pantalla que abre el visitante
+  var _showScreen = window.showScreen;
+  if (typeof _showScreen === 'function') {
+    window.showScreen = function (name, el) {
+      _showScreen(name, el);
+      ev('ver_pantalla', { pantalla: name });
+      if (name === 'encuesta') ev('abrio_encuesta');
+    };
+  }
+  // Envio de la encuesta
+  var f = document.getElementById('lp-form-combinada');
+  if (f) f.addEventListener('submit', function () { ev('completo_encuesta'); });
+  // Profundidad de scroll en el resumen
+  var marcado = {};
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var pct = (h.scrollTop + window.innerHeight) / h.scrollHeight * 100;
+    [50, 90].forEach(function (u) {
+      if (pct >= u && !marcado[u]) { marcado[u] = 1; ev('scroll_' + u); }
+    });
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
