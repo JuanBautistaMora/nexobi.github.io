@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nexo BI — Beltrán Consultoría</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
 <style>
 :root {
   --surface-0: #f1f0e8;
@@ -115,6 +114,353 @@ tbody tr:hover td { background: var(--surface-1); }
 .tag-ok { background: var(--bg-success); color: var(--text-success); }
 .tag-work { background: var(--bg-accent); color: var(--text-accent); }
 .future-note { background: var(--surface-1); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 9px 13px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+
+
+/* ============================================================
+   MODO PÚBLICO. Con ?encuesta=1 o 2 se muestra solo la encuesta,
+   sin sidebar ni topbar, que es lo que ve quien recibe el link.
+   ============================================================ */
+body.solo-encuesta .sidebar,
+body.solo-encuesta .topbar,
+body.solo-encuesta .alert-strip { display: none; }
+body.solo-encuesta .app { display: block; }
+body.solo-encuesta .main { width: 100%; }
+body.solo-encuesta .content { padding: 0; }
+
+/* ============================================================
+   LANDINGS. Todo prefijado lp- para no pisar el CSS del producto
+   ============================================================ */
+.lp-page { max-width: 760px; margin: 0 auto; }
+.lp-screen { display: none; }
+.lp-screen.active { display: block; }
+
+.lp-brandbar { display: flex; align-items: center; justify-content: space-between; padding: 2px 2px 16px; }
+.lp-brand { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); }
+.lp-tagline { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.lp-flag { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: var(--radius); background: var(--bg-success); color: var(--text-success); }
+
+.lp-hero { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px 24px; margin-bottom: 14px; }
+.lp-eyebrow { display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-accent); background: var(--bg-accent); border: 0.5px solid var(--border-accent); border-radius: var(--radius); padding: 3px 8px; margin-bottom: 14px; }
+.lp-hero h1 { font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 12px; }
+.lp-sub { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin-bottom: 18px; }
+.lp-cta { display: inline-flex; align-items: center; gap: 8px; border: none; background: var(--fill-accent); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; padding: 12px 20px; border-radius: var(--radius); cursor: pointer; }
+.lp-cta:hover { filter: brightness(1.06); }
+.lp-cta:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 2px; }
+.lp-ctanote { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
+
+.lp-mock { background: var(--surface-0); border: 0.5px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+.lp-mocktop { display: flex; align-items: flex-start; justify-content: space-between; padding: 4px 4px 12px; gap: 10px; }
+.lp-mocktitle { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.lp-mocksub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.lp-mockstamp { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: var(--radius); background: var(--bg-success); color: var(--text-success); white-space: nowrap; }
+.lp-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
+.lp-kpi { background: var(--surface-1); border-radius: var(--radius); padding: 11px 12px; }
+.lp-kpilabel { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.lp-kpival { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+.lp-kpisub { font-size: 10px; margin-top: 2px; color: var(--text-muted); }
+.lp-kpisub.up { color: var(--text-success); }
+.lp-kpisub.warn { color: var(--text-warning); }
+.lp-mockcols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lp-mockcard { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 12px; }
+.lp-mockcardtitle { font-size: 11px; font-weight: 600; color: var(--text-primary); margin-bottom: 9px; }
+.lp-chartbox { position: relative; height: 96px; }
+.lp-mini { display: flex; align-items: flex-start; gap: 7px; padding: 8px 9px; border-radius: var(--radius); border: 0.5px solid var(--border); background: var(--surface-1); margin-bottom: 6px; }
+.lp-mini:last-child { margin-bottom: 0; }
+.lp-mini.danger { border-color: var(--border-danger); background: var(--bg-danger); }
+.lp-mini.warning { border-color: var(--border-warning); background: var(--bg-warning); }
+.lp-mini i { font-size: 13px; margin-top: 1px; }
+.lp-mini.danger i, .lp-mini.danger b { color: var(--text-danger); }
+.lp-mini.warning i, .lp-mini.warning b { color: var(--text-warning); }
+.lp-mini b { display: block; font-size: 10px; }
+.lp-mini small { font-size: 9px; color: var(--text-secondary); line-height: 1.4; display: block; margin-top: 1px; }
+.lp-mocktable { width: 100%; border-collapse: collapse; font-size: 10px; }
+.lp-mocktable th { text-align: left; font-size: 8px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 6px; border-bottom: 0.5px solid var(--border); background: var(--surface-1); font-weight: 600; }
+.lp-mocktable td { padding: 6px; border-bottom: 0.5px solid var(--border); color: var(--text-primary); }
+.lp-mocktable tr:last-child td { border-bottom: none; }
+.lp-tag { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: var(--radius); font-weight: 600; }
+.lp-tag.ok { background: var(--bg-success); color: var(--text-success); }
+.lp-tag.mid { background: var(--bg-warning); color: var(--text-warning); }
+.lp-tag.bad { background: var(--bg-danger); color: var(--text-danger); }
+.lp-mockfoot { font-size: 10px; color: var(--text-muted); text-align: center; padding-top: 10px; }
+
+.lp-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.lp-benefit { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 13px; }
+.lp-benefit i { font-size: 17px; color: var(--text-accent); }
+.lp-benefit b { display: block; font-size: 12px; color: var(--text-primary); margin: 7px 0 3px; }
+.lp-benefit span { font-size: 11px; color: var(--text-secondary); line-height: 1.45; }
+
+.lp-form { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px; scroll-margin-top: 20px; }
+.lp-form h2 { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.lp-formsub { font-size: 12px; color: var(--text-secondary); margin-bottom: 18px; line-height: 1.5; }
+.lp-field { margin-bottom: 14px; }
+.lp-field label { display: block; font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; }
+.lp-field input, .lp-field select { width: 100%; font-family: inherit; font-size: 13px; padding: 10px 12px; border: 0.5px solid var(--border-strong); border-radius: var(--radius); background: var(--surface-1); color: var(--text-primary); }
+.lp-field input:focus, .lp-field select:focus { outline: none; border-color: var(--fill-accent); background: var(--surface-2); }
+.lp-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.lp-opt { font-size: 12px; padding: 7px 11px; border: 0.5px solid var(--border-strong); border-radius: var(--radius); background: var(--surface-1); cursor: pointer; user-select: none; color: var(--text-secondary); }
+.lp-opt.on { background: var(--bg-accent); border-color: var(--fill-accent); color: var(--text-accent); font-weight: 600; }
+.lp-opt:hover { background: var(--surface-2); }
+.lp-optional { font-weight: 400; color: var(--text-muted); text-transform: none; letter-spacing: 0; }
+.lp-days { display: flex; flex-wrap: wrap; gap: 6px; }
+.lp-day { font-size: 12px; padding: 7px 12px; border: 0.5px solid var(--border-strong); border-radius: var(--radius); background: var(--surface-1); cursor: pointer; user-select: none; color: var(--text-secondary); }
+.lp-day.on { background: var(--bg-accent); border-color: var(--fill-accent); color: var(--text-accent); font-weight: 600; }
+.lp-submit { width: 100%; border: none; background: var(--fill-accent); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; padding: 12px; border-radius: var(--radius); cursor: pointer; margin-top: 4px; }
+.lp-submit:disabled { opacity: 0.6; cursor: default; }
+.lp-submit:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 2px; }
+.lp-privacy { font-size: 10px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+.lp-ok { display: none; text-align: center; padding: 18px 6px; }
+.lp-ok i { font-size: 34px; color: var(--text-success); }
+.lp-ok b { display: block; font-size: 15px; color: var(--text-primary); margin: 10px 0 5px; }
+.lp-ok span { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+.lp-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.lp-plan { background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; position: relative; }
+.lp-plan.featured { border-color: var(--border-accent); background: var(--bg-accent); }
+.lp-planflag { position: absolute; top: -9px; left: 14px; font-size: 10px; padding: 2px 7px; border-radius: var(--radius); font-weight: 600; background: var(--fill-accent); color: #fff; }
+.lp-planname { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+.lp-plan.featured .lp-planname { color: var(--text-accent); }
+.lp-plandesc { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.lp-plan.featured .lp-plandesc { color: var(--text-accent); opacity: 0.85; }
+.lp-planprice { font-size: 22px; font-weight: 600; color: var(--text-primary); margin: 9px 0 12px; }
+.lp-plan.featured .lp-planprice { color: var(--text-accent); }
+.lp-planprice small { font-size: 10px; font-weight: 400; color: var(--text-muted); }
+.lp-planfeats { display: flex; flex-direction: column; gap: 6px; font-size: 10px; color: var(--text-secondary); flex: 1; }
+.lp-plan.featured .lp-planfeats { color: var(--text-accent); }
+.lp-planfeats i { margin-right: 5px; }
+.lp-planfeats .yes i { color: var(--text-success); }
+.lp-plan.featured .lp-planfeats .yes i { color: var(--text-accent); }
+.lp-planfeats .no { color: var(--text-muted); }
+.lp-feenote { background: var(--surface-1); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 9px 13px; display: flex; align-items: flex-start; gap: 8px; font-size: 11px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+
+
+
+/* ============================================================
+   LLAMADA A LA ENCUESTA
+   ============================================================ */
+.nav-item.nav-encuesta {
+  background: var(--fill-accent);
+  color: #fff;
+  font-weight: 600;
+  margin: 2px 8px;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+.nav-item.nav-encuesta i { color: #fff; }
+.nav-item.nav-encuesta:hover { filter: brightness(1.08); }
+.nav-item.nav-encuesta.active { background: var(--fill-accent); color: #fff; border-left-color: transparent; }
+.nav-encuesta-sub {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 1px;
+}
+.nav-encuesta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  animation: navbrillo 4.5s ease-in-out infinite;
+}
+@keyframes navbrillo {
+  0%, 70% { left: -60%; }
+  100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-encuesta::after { animation: none; }
+}
+
+/* Tira de cierre al pie de cada pantalla */
+.cierre-encuesta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--surface-2);
+  border: 0.5px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 18px;
+}
+.cierre-encuesta-txt b {
+  display: block;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.cierre-encuesta-txt span {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.cierre-encuesta button {
+  border: none;
+  background: var(--fill-accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.cierre-encuesta button:hover { filter: brightness(1.06); }
+.cierre-encuesta button:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 2px; }
+body.solo-encuesta .cierre-encuesta { display: none; }
+
+/* ============================================================
+   MOBILE. El sidebar pasa a ser una barra de pestañas
+   horizontal deslizable, que es el patrón de app en celular.
+   ============================================================ */
+
+
+/* ============================================================
+   MOBILE. Navegación inferior con íconos, patrón de app real.
+   En desktop nada de esto aplica, el sidebar queda como está.
+   ============================================================ */
+.bottomnav { display: none; }
+.atajo-fuentes { display: none; }
+
+@media (max-width: 760px) {
+  body { padding: 0; background: var(--surface-0); }
+  .app {
+    flex-direction: column;
+    max-width: none;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+  .sidebar { display: none; }
+
+  /* Header de app */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    padding: 13px 16px;
+  }
+  .page-title { font-size: 15px; }
+  .alert-strip { padding: 8px 16px; font-size: 11px; align-items: flex-start; }
+  .content { padding: 14px 14px 96px; }
+
+  /* Barra de navegación inferior */
+  .bottomnav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    background: var(--surface-2);
+    border-top: 0.5px solid var(--border);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+  }
+  .bottomnav .nav-item {
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 6px 2px;
+    border: none;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-secondary);
+    background: none;
+    text-align: center;
+    min-width: 0;
+  }
+  .bottomnav .nav-item .ic { width: 24px; height: 24px; }
+  .bottomnav .nav-item.active {
+    color: var(--text-accent);
+    background: none;
+    border: none;
+    font-weight: 600;
+  }
+  .bottomnav .nav-item:hover { background: none; }
+
+  /* Botón central de la encuesta, elevado como acción principal */
+  .bottomnav .bn-encuesta { color: var(--text-accent); font-weight: 700; }
+  .bn-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--fill-accent);
+    color: #fff;
+    margin: -26px auto 0;
+    box-shadow: 0 4px 14px rgba(42,120,214,0.4);
+    border: 3px solid var(--surface-2);
+  }
+  .bn-fab .ic { width: 26px; height: 26px; color: #fff; }
+  .bottomnav .bn-encuesta.active .bn-fab { background: var(--text-accent); }
+
+  /* Atajo a fuentes desde el resumen, solo mobile */
+  .atajo-fuentes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--surface-2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 15px;
+    margin-top: 14px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .atajo-fuentes b { color: var(--text-primary); font-size: 13px; display: block; }
+  .atajo-fuentes span { font-size: 11px; color: var(--text-muted); }
+  .atajo-fuentes i { color: var(--text-accent); font-size: 18px; }
+
+  /* Contenido */
+  .kpi-grid { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .kpi { padding: 11px 12px; }
+  .kpi-val { font-size: 17px; }
+  .two-col { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+  .scenario-grid { grid-template-columns: 1fr; gap: 8px; }
+  .bench-kpi-grid { grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
+  .screen [style*="repeat(3,1fr)"] { grid-template-columns: 1fr !important; gap: 10px !important; }
+
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap table { min-width: 460px; }
+  thead th { padding: 8px 10px; }
+  tbody td { padding: 9px 10px; }
+
+  .cierre-encuesta { padding: 14px; }
+  .cierre-encuesta button { width: 100%; }
+
+  /* Encuesta */
+  .lp-page { max-width: none; }
+  .lp-brandbar { display: none; }
+  .lp-hero { padding: 20px 16px; }
+  .lp-hero h1 { font-size: 20px; }
+  .lp-sub { font-size: 13px; }
+  .lp-cta { width: 100%; justify-content: center; }
+  .lp-benefits { grid-template-columns: 1fr; }
+  .lp-plans { grid-template-columns: 1fr; }
+  .lp-plan.featured { order: -1; }
+  .lp-form { padding: 18px 16px; }
+  .lp-opt { font-size: 13px; padding: 10px 14px; }
+  .lp-field input, .lp-field select { font-size: 16px; padding: 12px; }
+  .lp-submit { padding: 14px; font-size: 15px; }
+}
+
+body.solo-encuesta .bottomnav { display: none; }
+
+.ic { stroke: currentColor; }
+.chart-m { display: none; }
+@media (max-width: 760px) {
+  .chart-d { display: none; }
+  .chart-m { display: block; }
+}
 </style>
 </head>
 <body>
@@ -124,25 +470,39 @@ tbody tr:hover td { background: var(--surface-1); }
     <div class="sidebar-logo">
       <div class="logo-brand">Mi negocio</div>
       <div class="logo-biz">Beltrán Consultoría</div>
-      <div class="logo-period"><i class="ti ti-calendar"></i> Mayo 2025</div>
+      <div class="logo-period"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16"/></svg> Mayo 2025</div>
     </div>
     <div class="nav-section">Financiero</div>
     <div class="nav-item active" onclick="showScreen('resumen', this)">
-      <i class="ti ti-home"></i> Resumen del mes
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/><path d="M10 21v-6h4v6"/></svg> Resumen del mes
     </div>
     <div class="nav-item" onclick="showScreen('clientes', this)">
-      <i class="ti ti-chart-bar"></i> Mis clientes
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="12" width="5" height="8" rx="1"/><rect x="9.5" y="8" width="5" height="12" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/></svg> Mis clientes
     </div>
     <div class="nav-item" onclick="showScreen('caja', this)">
-      <i class="ti ti-calendar-stats"></i> Qué viene
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M11 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M18 14v4M15 16v2M21 15v3"/></svg> Proyección de caja
     </div>
     <div class="nav-item" onclick="showScreen('fuentes', this)">
-      <i class="ti ti-plug"></i> De dónde vienen los datos
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 3v5M15 3v5"/><path d="M7 8h10v3a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg> De dónde vienen los datos
     </div>
     <div class="nav-section">Mi rubro</div>
     <div class="nav-item" onclick="showScreen('benchmark', this)">
-      <i class="ti ti-users-group"></i> Cómo me comparo
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="8" r="2.5"/><path d="M8 21v-2a4 4 0 0 1 8 0v2"/><circle cx="5" cy="10" r="2"/><path d="M2 20v-1.5A3 3 0 0 1 5 16"/><circle cx="19" cy="10" r="2"/><path d="M22 20v-1.5a3 3 0 0 0-3-2.5"/></svg> Benchmark
     </div>
+    <div class="nav-section">Tu opinión</div>
+    <div class="nav-item nav-encuesta" onclick="showScreen('encuesta', this)">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg> Contanos qué te parece
+      <span class="nav-encuesta-sub">2 minutos, nos ayuda un montón</span>
+    </div>
+    <div style="display:none"><!-- Cuenta oculta por ahora -->
+    <div class="nav-section">Cuenta</div>
+    <div class="nav-item" onclick="showScreen('onboarding', this)">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M4 13a8 8 0 0 1 7-7 15 15 0 0 1 9-3 15 15 0 0 1-3 9 8 8 0 0 1-7 7z"/><path d="M7 14a5 5 0 0 0-3 3l3 1 1 3a5 5 0 0 0 3-3"/><circle cx="15" cy="9" r="1"/></svg> Cómo empezar
+    </div>
+    <div class="nav-item" onclick="showScreen('plan', this)">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h2"/></svg> Mi plan
+    </div>
+    </div><!-- /Cuenta oculta -->
     <div class="sidebar-footer">
       <div>Próxima sesión con Nexo</div>
       <div style="font-weight:600; color:var(--text-secondary); margin-top:2px;">12 de junio · 11 hs</div>
@@ -159,7 +519,7 @@ tbody tr:hover td { background: var(--surface-1); }
     </div>
 
     <div class="alert-strip" id="alert-strip">
-      <i class="ti ti-alert-triangle"></i>
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M10.24 3.957 1.999 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.76 3.957a2 2 0 0 0-3.52 0z"/><path d="M12 9v4M12 17h.01"/></svg>
       <strong>Atención:</strong> El 18 de junio se juntan tres vencimientos. La caja puede quedar corta si no entra el cobro de Grupo Palermo antes de esa fecha.
     </div>
 
@@ -171,7 +531,7 @@ tbody tr:hover td { background: var(--surface-1); }
           <div class="kpi">
             <div class="kpi-label">Lo que me quedó</div>
             <div class="kpi-val">$3.420.000</div>
-            <div class="kpi-sub up"><i class="ti ti-trending-up"></i> Mejor que abril (+8%)</div>
+            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> Mejor que abril (+8%)</div>
           </div>
           <div class="kpi">
             <div class="kpi-label">De cada $100 que facturé</div>
@@ -181,20 +541,20 @@ tbody tr:hover td { background: var(--surface-1); }
           <div class="kpi">
             <div class="kpi-label">Caja ahora mismo</div>
             <div class="kpi-val">$1.820.000</div>
-            <div class="kpi-sub warn"><i class="ti ti-alert-circle"></i> Riesgo el 18 de junio</div>
+            <div class="kpi-sub warn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Riesgo el 18 de junio</div>
           </div>
           <div class="kpi">
             <div class="kpi-label">Lo que facturé</div>
             <div class="kpi-val">$12.030.000</div>
-            <div class="kpi-sub up"><i class="ti ti-trending-up"></i> +12% vs abril</div>
+            <div class="kpi-sub up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> +12% vs abril</div>
           </div>
         </div>
         <div class="two-col">
           <div class="card">
             <div class="card-title">Cómo vengo en el año</div>
             <div class="card-sub">Resultado neto mensual en pesos</div>
-            <div style="position:relative;height:150px;">
-              <canvas id="c-result"></canvas>
+            <div >
+              <div class="chart-d"><svg viewBox="0 0 390 165" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="46" y1="139.0" x2="378" y2="139.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="142.5" font-size="10.0" fill="#898781" text-anchor="end">$1.6M</text><line x1="46" y1="97.3" x2="378" y2="97.3" stroke="rgba(0,0,0,0.07)"/><text x="39" y="100.8" font-size="10.0" fill="#898781" text-anchor="end">$2.3M</text><line x1="46" y1="55.7" x2="378" y2="55.7" stroke="rgba(0,0,0,0.07)"/><text x="39" y="59.2" font-size="10.0" fill="#898781" text-anchor="end">$3.0M</text><line x1="46" y1="14.0" x2="378" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="17.5" font-size="10.0" fill="#898781" text-anchor="end">$3.7M</text><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5 L378.0 139 L46.0 139 Z" fill="rgba(42,120,214,0.10)"/><path d="M46.0 110.4 L112.4 92.2 L178.8 122.5 L245.2 68.0 L311.6 43.8 L378.0 30.5" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46.0" cy="110.4" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="112.4" cy="92.2" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="178.8" cy="122.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="245.2" cy="68.0" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="311.6" cy="43.8" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="378.0" cy="30.5" r="3.4" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="46.0" y="159" font-size="10.0" fill="#898781" text-anchor="start">Dic</text><text x="112.4" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Ene</text><text x="178.8" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Feb</text><text x="245.2" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Mar</text><text x="311.6" y="159" font-size="10.0" fill="#898781" text-anchor="middle">Abr</text><text x="378.0" y="159" font-size="10.0" fill="#898781" text-anchor="end">May</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 175" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="48" y1="148.0" x2="328" y2="148.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="151.7" font-size="10.5" fill="#898781" text-anchor="end">$1.6M</text><line x1="48" y1="103.3" x2="328" y2="103.3" stroke="rgba(0,0,0,0.07)"/><text x="41" y="107.0" font-size="10.5" fill="#898781" text-anchor="end">$2.3M</text><line x1="48" y1="58.7" x2="328" y2="58.7" stroke="rgba(0,0,0,0.07)"/><text x="41" y="62.3" font-size="10.5" fill="#898781" text-anchor="end">$3.0M</text><line x1="48" y1="14.0" x2="328" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="17.7" font-size="10.5" fill="#898781" text-anchor="end">$3.7M</text><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7 L328.0 148 L48.0 148 Z" fill="rgba(42,120,214,0.10)"/><path d="M48.0 117.3 L104.0 97.9 L160.0 130.3 L216.0 71.9 L272.0 46.0 L328.0 31.7" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="48.0" cy="117.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="104.0" cy="97.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="160.0" cy="130.3" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="216.0" cy="71.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="272.0" cy="46.0" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="328.0" cy="31.7" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="48.0" y="168" font-size="10.5" fill="#898781" text-anchor="start">Dic</text><text x="104.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Ene</text><text x="160.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Feb</text><text x="216.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Mar</text><text x="272.0" y="168" font-size="10.5" fill="#898781" text-anchor="middle">Abr</text><text x="328.0" y="168" font-size="10.5" fill="#898781" text-anchor="end">May</text></svg></div>
             </div>
           </div>
           <div class="card">
@@ -202,21 +562,21 @@ tbody tr:hover td { background: var(--surface-1); }
             <div class="card-sub">Lo que necesitás saber ahora</div>
             <div class="alert-list">
               <div class="alert-item danger">
-                <i class="ti ti-droplet alert-icon"></i>
+                <svg class="ic alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 3l5.2 6.5a6.6 6.6 0 1 1-10.4 0z"/></svg>
                 <div>
                   <div class="alert-title">Caja en riesgo el 18 de junio</div>
                   <div class="alert-desc">Se juntan IIBB, alquiler y sueldos. Si Grupo Palermo no paga antes, la caja queda en $272.000.</div>
                 </div>
               </div>
               <div class="alert-item warning">
-                <i class="ti ti-chart-line alert-icon"></i>
+                <svg class="ic alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M4 19h16"/><path d="M4 15l4-5 4 3 5-7"/></svg>
                 <div>
                   <div class="alert-title">Tecno Sur está bajando el margen</div>
                   <div class="alert-desc">Cayó 6 puntos en 3 meses. Vale la pena revisar el precio antes de renovar.</div>
                 </div>
               </div>
               <div class="alert-item success">
-                <i class="ti ti-coin alert-icon"></i>
+                <svg class="ic alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-5.6 1.5c0 3 5.6 1.5 5.6 4.5A3 3 0 0 1 9 16.5M12 6v12"/></svg>
                 <div>
                   <div class="alert-title">Factura de Grupo Palermo vence en 3 días</div>
                   <div class="alert-desc">$960.000. Si entra antes del 18, el problema de caja se resuelve solo.</div>
@@ -239,7 +599,22 @@ tbody tr:hover td { background: var(--surface-1); }
             </tbody>
           </table>
         </div>
-      </div>
+      
+        <div class="atajo-fuentes" onclick="abrirFuentes()">
+          <div>
+            <b>¿De dónde salen estos datos?</b>
+            <span>Mirá las fuentes conectadas</span>
+          </div>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>¿Te serviría tener esto en tu empresa?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+</div>
 
       <!-- CLIENTES -->
       <div class="screen" id="screen-clientes">
@@ -261,11 +636,19 @@ tbody tr:hover td { background: var(--surface-1); }
         <div class="card">
           <div class="card-title">Margen por cliente</div>
           <div class="card-sub">Qué porcentaje te queda de cada uno</div>
-          <div style="position:relative;height:170px;">
-            <canvas id="c-clientes"></canvas>
+          <div >
+            <div class="chart-d"><svg viewBox="0 0 820 235" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="46" y1="207.0" x2="808" y2="207.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="210.8" font-size="11.0" fill="#898781" text-anchor="end">0%</text><line x1="46" y1="144.3" x2="808" y2="144.3" stroke="rgba(0,0,0,0.07)"/><text x="39" y="148.2" font-size="11.0" fill="#898781" text-anchor="end">17%</text><line x1="46" y1="81.7" x2="808" y2="81.7" stroke="rgba(0,0,0,0.07)"/><text x="39" y="85.5" font-size="11.0" fill="#898781" text-anchor="end">33%</text><line x1="46" y1="19.0" x2="808" y2="19.0" stroke="rgba(0,0,0,0.07)"/><text x="39" y="22.8" font-size="11.0" fill="#898781" text-anchor="end">50%</text><rect x="99.1" y="52.9" width="46.2" height="154.1" rx="4" fill="#2a78d6"/><text x="122.2" y="47.4" font-size="11.0" fill="#52514e" text-anchor="middle" font-weight="600">41%</text><text x="122.2" y="226.2" font-size="10.1" fill="#898781" text-anchor="middle">Grupo Palermo</text><rect x="251.5" y="75.5" width="46.2" height="131.5" rx="4" fill="#2a78d6"/><text x="274.6" y="70.0" font-size="11.0" fill="#52514e" text-anchor="middle" font-weight="600">35%</text><text x="274.6" y="226.2" font-size="10.1" fill="#898781" text-anchor="middle">Consultora OSA</text><rect x="403.9" y="90.5" width="46.2" height="116.5" rx="4" fill="#2a78d6"/><text x="427.0" y="85.0" font-size="11.0" fill="#52514e" text-anchor="middle" font-weight="600">31%</text><text x="427.0" y="226.2" font-size="10.1" fill="#898781" text-anchor="middle">Dist. Ramos</text><rect x="556.3" y="101.8" width="46.2" height="105.2" rx="4" fill="#73726c"/><text x="579.4" y="96.3" font-size="11.0" fill="#52514e" text-anchor="middle" font-weight="600">28%</text><text x="579.4" y="226.2" font-size="10.1" fill="#898781" text-anchor="middle">Resto</text><rect x="708.7" y="124.3" width="46.2" height="82.7" rx="4" fill="#e34948"/><text x="731.8" y="118.8" font-size="11.0" fill="#52514e" text-anchor="middle" font-weight="600">22%</text><text x="731.8" y="226.2" font-size="10.1" fill="#898781" text-anchor="middle">Tecno Sur</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 215" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="39" y1="166.0" x2="328" y2="166.0" stroke="rgba(0,0,0,0.07)"/><text x="32" y="169.3" font-size="9.5" fill="#898781" text-anchor="end">0%</text><line x1="39" y1="116.3" x2="328" y2="116.3" stroke="rgba(0,0,0,0.07)"/><text x="32" y="119.7" font-size="9.5" fill="#898781" text-anchor="end">17%</text><line x1="39" y1="66.7" x2="328" y2="66.7" stroke="rgba(0,0,0,0.07)"/><text x="32" y="70.0" font-size="9.5" fill="#898781" text-anchor="end">33%</text><line x1="39" y1="17.0" x2="328" y2="17.0" stroke="rgba(0,0,0,0.07)"/><text x="32" y="20.3" font-size="9.5" fill="#898781" text-anchor="end">50%</text><rect x="52.0" y="43.9" width="31.8" height="122.1" rx="4" fill="#2a78d6"/><text x="67.9" y="39.1" font-size="9.5" fill="#52514e" text-anchor="middle" font-weight="600">41%</text><text transform="translate(70.7 182.2) rotate(-34)" font-size="8.7" fill="#898781" text-anchor="end">Grupo Palermo</text><rect x="109.8" y="61.7" width="31.8" height="104.3" rx="4" fill="#2a78d6"/><text x="125.7" y="57.0" font-size="9.5" fill="#52514e" text-anchor="middle" font-weight="600">35%</text><text transform="translate(128.5 182.2) rotate(-34)" font-size="8.7" fill="#898781" text-anchor="end">Consultora OSA</text><rect x="167.6" y="73.7" width="31.8" height="92.3" rx="4" fill="#2a78d6"/><text x="183.5" y="68.9" font-size="9.5" fill="#52514e" text-anchor="middle" font-weight="600">31%</text><text transform="translate(186.3 182.2) rotate(-34)" font-size="8.7" fill="#898781" text-anchor="end">Dist. Ramos</text><rect x="225.4" y="82.6" width="31.8" height="83.4" rx="4" fill="#73726c"/><text x="241.3" y="77.8" font-size="9.5" fill="#52514e" text-anchor="middle" font-weight="600">28%</text><text transform="translate(244.1 182.2) rotate(-34)" font-size="8.7" fill="#898781" text-anchor="end">Resto</text><rect x="283.2" y="100.5" width="31.8" height="65.5" rx="4" fill="#e34948"/><text x="299.1" y="95.7" font-size="9.5" fill="#52514e" text-anchor="middle" font-weight="600">22%</text><text transform="translate(301.9 182.2) rotate(-34)" font-size="8.7" fill="#898781" text-anchor="end">Tecno Sur</text></svg></div>
           </div>
         </div>
-      </div>
+      
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>¿Te serviría ver esto de tu negocio?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+</div>
 
       <!-- CAJA -->
       <div class="screen" id="screen-caja">
@@ -289,8 +672,8 @@ tbody tr:hover td { background: var(--surface-1); }
         <div class="card" style="margin-bottom:14px;">
           <div class="card-title">Cómo va a estar la caja las próximas 6 semanas</div>
           <div class="card-sub">El punto rojo es cuando se juntan los vencimientos</div>
-          <div style="position:relative;height:170px;">
-            <canvas id="c-caja"></canvas>
+          <div >
+            <div class="chart-d"><svg viewBox="0 0 820 205" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="50" y1="177.0" x2="808" y2="177.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="180.8" font-size="11.0" fill="#898781" text-anchor="end">$0.72M</text><line x1="50" y1="123.0" x2="808" y2="123.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="126.8" font-size="11.0" fill="#898781" text-anchor="end">$1.14M</text><line x1="50" y1="69.0" x2="808" y2="69.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="72.8" font-size="11.0" fill="#898781" text-anchor="end">$1.57M</text><line x1="50" y1="15.0" x2="808" y2="15.0" stroke="rgba(0,0,0,0.07)"/><text x="43" y="18.9" font-size="11.0" fill="#898781" text-anchor="end">$1.99M</text><path d="M50.0 36.4 L201.6 58.2 L353.2 155.6 L504.8 112.0 L656.4 72.3 L808.0 41.6 L808.0 177 L50.0 177 Z" fill="rgba(42,120,214,0.10)"/><path d="M50.0 36.4 L201.6 58.2 L353.2 155.6 L504.8 112.0 L656.4 72.3 L808.0 41.6" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="50.0" cy="36.4" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="201.6" cy="58.2" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="353.2" cy="155.6" r="5.5" fill="#e34948" stroke="#fff" stroke-width="1.6"/><circle cx="504.8" cy="112.0" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="656.4" cy="72.3" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="808.0" cy="41.6" r="3.7" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="50.0" y="198" font-size="11.0" fill="#898781" text-anchor="start">Sem 1</text><text x="201.6" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 2</text><text x="353.2" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 3</text><text x="504.8" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 4</text><text x="656.4" y="198" font-size="11.0" fill="#898781" text-anchor="middle">Sem 5</text><text x="808.0" y="198" font-size="11.0" fill="#898781" text-anchor="end">Sem 6</text></svg></div><div class="chart-m"><svg viewBox="0 0 340 185" width="100%" style="width:100%;height:auto;display:block" role="img"><line x1="48" y1="158.0" x2="328" y2="158.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="161.7" font-size="10.5" fill="#898781" text-anchor="end">$0.72M</text><line x1="48" y1="110.0" x2="328" y2="110.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="113.7" font-size="10.5" fill="#898781" text-anchor="end">$1.14M</text><line x1="48" y1="62.0" x2="328" y2="62.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="65.7" font-size="10.5" fill="#898781" text-anchor="end">$1.57M</text><line x1="48" y1="14.0" x2="328" y2="14.0" stroke="rgba(0,0,0,0.07)"/><text x="41" y="17.7" font-size="10.5" fill="#898781" text-anchor="end">$1.99M</text><path d="M48.0 33.1 L104.0 52.4 L160.0 138.9 L216.0 100.2 L272.0 64.9 L328.0 37.6 L328.0 158 L48.0 158 Z" fill="rgba(42,120,214,0.10)"/><path d="M48.0 33.1 L104.0 52.4 L160.0 138.9 L216.0 100.2 L272.0 64.9 L328.0 37.6" fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="48.0" cy="33.1" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="104.0" cy="52.4" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="160.0" cy="138.9" r="5.2" fill="#e34948" stroke="#fff" stroke-width="1.6"/><circle cx="216.0" cy="100.2" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="272.0" cy="64.9" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><circle cx="328.0" cy="37.6" r="3.6" fill="#2a78d6" stroke="#fff" stroke-width="1.6"/><text x="48.0" y="178" font-size="10.5" fill="#898781" text-anchor="start">Sem 1</text><text x="104.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 2</text><text x="160.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 3</text><text x="216.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 4</text><text x="272.0" y="178" font-size="10.5" fill="#898781" text-anchor="middle">Sem 5</text><text x="328.0" y="178" font-size="10.5" fill="#898781" text-anchor="end">Sem 6</text></svg></div>
           </div>
         </div>
         <div class="section-label">Lo que entra y sale en junio</div>
@@ -305,12 +688,20 @@ tbody tr:hover td { background: var(--surface-1); }
             </tbody>
           </table>
         </div>
-      </div>
+      
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>¿Te serviría saber esto con anticipación?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+</div>
 
       <!-- BENCHMARK -->
       <div class="screen" id="screen-benchmark">
         <div class="future-note">
-          <i class="ti ti-info-circle"></i>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
           Los datos del rubro son anónimos y agregados. Ninguna empresa es identificable. Se activan cuando hay suficientes empresas similares en la base.
         </div>
         <div class="bench-kpi-grid">
@@ -320,7 +711,7 @@ tbody tr:hover td { background: var(--surface-1); }
               <div class="bench-your">28,4%</div>
               <div class="bench-sector">sector: 24,1%</div>
             </div>
-            <div class="bench-delta up"><i class="ti ti-trending-up"></i> 4,3 puntos arriba del promedio</div>
+            <div class="bench-delta up"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg> 4,3 puntos arriba del promedio</div>
           </div>
           <div class="bench-kpi">
             <div class="kpi-label">Días para cobrar una factura</div>
@@ -328,7 +719,7 @@ tbody tr:hover td { background: var(--surface-1); }
               <div class="bench-your">34 días</div>
               <div class="bench-sector">sector: 28 días</div>
             </div>
-            <div class="bench-delta down"><i class="ti ti-trending-down"></i> Cobrás 6 días más tarde que el promedio</div>
+            <div class="bench-delta down"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 17v-4h-4"/></svg> Cobrás 6 días más tarde que el promedio</div>
           </div>
           <div class="bench-kpi">
             <div class="kpi-label">Peso del cliente más grande</div>
@@ -336,7 +727,7 @@ tbody tr:hover td { background: var(--surface-1); }
               <div class="bench-your">42%</div>
               <div class="bench-sector">sector: 31%</div>
             </div>
-            <div class="bench-delta down"><i class="ti ti-alert-circle"></i> Más concentrado que el promedio</div>
+            <div class="bench-delta down"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Más concentrado que el promedio</div>
           </div>
         </div>
         <div class="section-label">Lo que hacen bien las consultoras con mejor flujo</div>
@@ -362,7 +753,15 @@ tbody tr:hover td { background: var(--surface-1); }
             <span class="prac-tag tag-work">A trabajar</span>
           </div>
         </div>
-      </div>
+      
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>¿Te sumaría compararte con tu rubro?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+</div>
 
       <!-- FUENTES -->
       <div class="screen" id="screen-fuentes">
@@ -372,7 +771,7 @@ tbody tr:hover td { background: var(--surface-1); }
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;">
           <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
-              <i class="ti ti-file-invoice"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7z"/><path d="M9 12h6M9 16h4"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-primary);">ARCA (ex-AFIP)</div>
@@ -382,7 +781,7 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
           <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
-              <i class="ti ti-building-bank"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Banco Galicia</div>
@@ -392,7 +791,7 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
           <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
-              <i class="ti ti-brand-paypal"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M10 13h4a3 3 0 0 0 0-6h-4l-2 10h3l1-4z"/><path d="M7 17h3"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Mercado Pago</div>
@@ -402,7 +801,7 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
           <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
-              <i class="ti ti-table"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Planillas internas</div>
@@ -412,7 +811,7 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
           <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
-              <i class="ti ti-calculator"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Sistema contable (Colppy)</div>
@@ -422,7 +821,7 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
           <div style="background:var(--surface-2); border:0.5px dashed var(--border-strong); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px; opacity:0.6;">
             <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
-              <i class="ti ti-plus"></i>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             </div>
             <div style="flex:1; min-width:0;">
               <div style="font-size:13px; font-weight:600; color:var(--text-muted);">Agregar fuente</div>
@@ -431,14 +830,393 @@ tbody tr:hover td { background: var(--surface-1); }
           </div>
         </div>
         <div style="background:var(--surface-1); border:0.5px solid var(--border); border-radius:var(--radius); padding:10px 14px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:8px;">
-          <i class="ti ti-info-circle"></i>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
           Los datos se actualizan automáticamente. Nexo los consolida, categoriza y traduce en los indicadores que ves en el dashboard. Vos no cargás nada.
+        </div>
+      
+        <div class="cierre-encuesta">
+          <div class="cierre-encuesta-txt">
+            <b>¿Conectarías tus datos así?</b>
+            <span>Contanos qué te parece. Son dos minutos y nos ayuda muchísimo.</span>
+          </div>
+          <button type="button" onclick="irEncuesta()">Responder la encuesta</button>
+        </div>
+</div>
+
+      <!-- ONBOARDING -->
+      <div class="screen" id="screen-onboarding">
+        <div style="display:flex; gap:8px; margin-bottom:20px;">
+          <div style="flex:1; display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:var(--radius); background:var(--bg-accent); border:0.5px solid var(--border-accent);">
+            <div style="width:22px; height:22px; border-radius:50%; background:var(--fill-accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0;">1</div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-accent);">Conectá tus fuentes</div>
+              <div style="font-size:10px; color:var(--text-accent); opacity:0.8;">Paso actual</div>
+            </div>
+          </div>
+          <div style="flex:1; display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:var(--radius); background:var(--surface-1); border:0.5px solid var(--border);">
+            <div style="width:22px; height:22px; border-radius:50%; background:var(--surface-2); border:0.5px solid var(--border-strong); color:var(--text-muted); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0;">2</div>
+            <div>
+              <div style="font-size:12px; font-weight:600; color:var(--text-muted);">Separá lo personal de lo del negocio</div>
+              <div style="font-size:10px; color:var(--text-muted);">Siguiente paso</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Conectá tus fuentes para que Nexo empiece a trabajar</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:14px;">
+          Cuantas más fuentes conectes, más completo es el resultado. Podés sumar el resto más adelante, no hace falta terminar todo hoy.
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;">
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Cuenta bancaria</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Movimientos y saldo en tiempo real</div>
+            </div>
+            <span class="badge badge-success">Conectado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--bg-accent); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M10 13h4a3 3 0 0 0 0-6h-4l-2 10h3l1-4z"/><path d="M7 17h3"/></svg>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Mercado Pago</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Cobros y comisiones</div>
+            </div>
+            <span class="badge badge-success">Conectado</span>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px solid var(--border); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-accent); flex-shrink:0;">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7z"/><path d="M9 12h6M9 16h4"/></svg>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary);">ARCA (ex-AFIP)</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Facturación electrónica</div>
+            </div>
+            <button style="border:none; background:var(--fill-accent); color:#fff; font-size:11px; font-weight:600; padding:7px 12px; border-radius:var(--radius); cursor:pointer;">Conectar</button>
+          </div>
+          <div style="background:var(--surface-2); border:0.5px dashed var(--border-strong); border-radius:12px; padding:16px; display:flex; align-items:center; gap:14px; opacity:0.7;">
+            <div style="width:40px; height:40px; border-radius:var(--radius); background:var(--surface-1); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-muted); flex-shrink:0;">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:13px; font-weight:600; color:var(--text-muted);">Planillas o sistema contable</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Opcional, si ya usás uno</div>
+            </div>
+            <button style="border:0.5px solid var(--border-strong); background:transparent; color:var(--text-secondary); font-size:11px; font-weight:600; padding:7px 12px; border-radius:var(--radius); cursor:pointer;">Configurar</button>
+          </div>
+        </div>
+
+        <div class="section-label">Separá lo personal de lo del negocio</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:14px;">
+          Detectamos movimientos que podrían ser gasto personal mezclado en la cuenta del negocio. Confirmá o corregí, así el resultado que vas a ver no queda distorsionado.
+        </div>
+        <div class="table-wrap" style="margin-bottom:16px;">
+          <table>
+            <thead><tr><th>Fecha</th><th>Movimiento</th><th>Importe</th><th>Nexo sugiere</th><th>Confirmá</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>14 may</td>
+                <td>Débito Farmacity</td>
+                <td>$18.400</td>
+                <td><span class="badge badge-warning">Personal</span></td>
+                <td><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:10px; cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted); cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+              </tr>
+              <tr>
+                <td>12 may</td>
+                <td>Transferencia proveedor AWS</td>
+                <td>$142.000</td>
+                <td><span class="badge badge-muted">Negocio</span></td>
+                <td><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:10px; cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted); cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+              </tr>
+              <tr>
+                <td>10 may</td>
+                <td>Débito supermercado</td>
+                <td>$34.900</td>
+                <td><span class="badge badge-warning">Personal</span></td>
+                <td><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:10px; cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted); cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+              </tr>
+              <tr>
+                <td>08 may</td>
+                <td>Pago sueldo asistente</td>
+                <td>$410.000</td>
+                <td><span class="badge badge-muted">Negocio</span></td>
+                <td><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:10px; cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted); cursor:pointer;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+            Esto lo hacés una sola vez. Nexo aprende el patrón y clasifica solo de acá en adelante.
+          </div>
+          <button style="border:none; background:var(--fill-accent); color:#fff; font-size:12px; font-weight:600; padding:9px 18px; border-radius:var(--radius); cursor:pointer;">Confirmar y ver mi resumen</button>
         </div>
       </div>
 
-    </div>
+      <!-- PLAN -->
+      <div class="screen" id="screen-plan">
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:20px;">
+          Elegí el plan según cuánto necesitás de Nexo. Podés cambiar de plan cuando quieras.
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:16px;">
+          <div class="card" style="display:flex; flex-direction:column;">
+            <div class="card-title">Starter</div>
+            <div class="card-sub">Para empezar a ver claro</div>
+            <div style="font-size:24px; font-weight:600; color:var(--text-primary); margin:10px 0 14px;">USD 49<span style="font-size:11px; font-weight:400; color:var(--text-muted);">/mes</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:11px; color:var(--text-secondary); flex:1;">
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Resumen del mes</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Conexión de fuentes</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>1 fuente bancaria + MP</div>
+              <div style="color:var(--text-muted);"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Rentabilidad por cliente</div>
+              <div style="color:var(--text-muted);"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Proyección de caja</div>
+            </div>
+            <button style="margin-top:16px; border:0.5px solid var(--border-strong); background:transparent; color:var(--text-secondary); font-size:12px; font-weight:600; padding:9px; border-radius:var(--radius); cursor:pointer;">Elegir Starter</button>
+          </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+          <div class="card" style="display:flex; flex-direction:column; border-color:var(--border-accent); background:var(--bg-accent); position:relative;">
+            <span class="badge" style="position:absolute; top:-9px; left:15px; background:var(--fill-accent); color:#fff;">Recomendado</span>
+            <div class="card-title" style="color:var(--text-accent);">Growth</div>
+            <div class="card-sub" style="color:var(--text-accent); opacity:0.85;">Para decidir con toda la info</div>
+            <div style="font-size:24px; font-weight:600; color:var(--text-accent); margin:10px 0 14px;">USD 99<span style="font-size:11px; font-weight:400;">/mes</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:11px; color:var(--text-accent); flex:1;">
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Todo lo de Starter</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Rentabilidad por cliente</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Proyección de caja con alertas</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Fuentes ilimitadas</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Sesión mensual de interpretación</div>
+            </div>
+            <button style="margin-top:16px; border:none; background:var(--fill-accent); color:#fff; font-size:12px; font-weight:600; padding:9px; border-radius:var(--radius); cursor:pointer;">Elegir Growth</button>
+          </div>
+
+          <div class="card" style="display:flex; flex-direction:column;">
+            <div class="card-title">Pro</div>
+            <div class="card-sub">Para comparar contra el rubro</div>
+            <div style="font-size:24px; font-weight:600; color:var(--text-primary); margin:10px 0 14px;">USD 199<span style="font-size:11px; font-weight:400; color:var(--text-muted);">/mes</span></div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:11px; color:var(--text-secondary); flex:1;">
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Todo lo de Growth</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Benchmark sectorial</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Escenarios de proyección</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Sesión mensual extendida</div>
+              <div><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-success); margin-right:6px;width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Soporte prioritario</div>
+            </div>
+            <button style="margin-top:16px; border:0.5px solid var(--border-strong); background:transparent; color:var(--text-secondary); font-size:12px; font-weight:600; padding:9px; border-radius:var(--radius); cursor:pointer;">Elegir Pro</button>
+          </div>
+        </div>
+        <div class="future-note" style="margin-bottom:0;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          Todos los planes tienen un fee de onboarding único de USD 150, correspondiente a la puesta en marcha y el ordenamiento inicial de tus datos.
+        </div>
+      </div>
+
+      <!-- ================= ENCUESTA UNIFICADA ================= -->
+      <div class="screen" id="screen-encuesta">
+      <div class="lp-page">
+
+        <div class="lp-brandbar">
+          <div>
+            <div class="lp-brand">Nexo BI</div>
+            <div class="lp-tagline">De tus datos a tus decisiones</div>
+          </div>
+          <span class="lp-flag">Acceso anticipado</span>
+        </div>
+
+        <div class="lp-hero">
+          <span class="lp-eyebrow">Para PyMEs</span>
+          <h1>¿Sabés cuánto ganaste el mes pasado, en neto, sin esperar al contador?</h1>
+          <p class="lp-sub">En la mayoría de las PyMEs, la ganancia real del mes recién se conoce cuando el contador cierra, semanas después. Nexo BI junta los datos del banco, la facturación y los gastos, y muestra en un solo tablero cuánto quedó de verdad y qué parte del negocio deja plata y cuál no. Como el que acabás de recorrer.</p>
+          <button class="lp-cta" type="button" onclick="lpScroll('lp-form-unica')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 5v14M18 13l-6 6-6-6"/></svg> Quiero saber más</button>
+          <div class="lp-ctanote">Son tres minutos. Estamos abriendo la lista de acceso anticipado.</div>
+        </div>
+
+        <div class="lp-benefits">
+          <div class="lp-benefit">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 3v5M15 3v5"/><path d="M7 8h10v3a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg>
+            <b>Todo en un solo lugar</b>
+            <span>Banco, facturación y gastos conectados. Se terminó el Excel armado a mano.</span>
+          </div>
+          <div class="lp-benefit">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M12 3v9h9a9 9 0 1 0-9-9z"/><path d="M14.5 14.5 19 19"/></svg>
+            <b>Sabés qué te deja plata</b>
+            <span>No lo que facturás. Lo que realmente te queda de cada cliente o producto.</span>
+          </div>
+          <div class="lp-benefit">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M10 5a2 2 0 1 1 4 0 7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/></svg>
+            <b>Te avisamos antes</b>
+            <span>Si la caja se complica en dos semanas, lo ves hoy y no cuando ya pasó.</span>
+          </div>
+        </div>
+
+        <div class="lp-form" id="lp-form-unica">
+          <div id="lp-form-body">
+            <h2>Contanos de tu negocio</h2>
+            <div class="lp-formsub">Tres minutos, casi todo con un toque. Tu respuesta nos ayuda a definir cómo lanzamos.</div>
+            <form id="lp-form-combinada" novalidate>
+
+              <div class="lp-field">
+                <label>¿A qué se dedica la empresa?</label>
+                <div class="lp-opts" data-campo="rubro">
+                  <span class="lp-opt" data-v="Servicios">Servicios</span>
+                  <span class="lp-opt" data-v="Comercio">Comercio</span>
+                  <span class="lp-opt" data-v="Otro">Otro</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>¿Cuántas personas trabajan?</label>
+                <div class="lp-opts" data-campo="tamano">
+                  <span class="lp-opt" data-v="Solo yo">Solo yo</span>
+                  <span class="lp-opt" data-v="2 a 5">2 a 5</span>
+                  <span class="lp-opt" data-v="6 a 15">6 a 15</span>
+                  <span class="lp-opt" data-v="Más de 15">Más de 15</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>Hoy, ¿cómo saben cuánto ganó la empresa el mes pasado?</label>
+                <div class="lp-opts" data-campo="metodo">
+                  <span class="lp-opt" data-v="Espero al contador">Espero al contador</span>
+                  <span class="lp-opt" data-v="Lo armo en Excel">Lo armo en Excel</span>
+                  <span class="lp-opt" data-v="Tengo un sistema que me lo muestra">Tengo un sistema</span>
+                  <span class="lp-opt" data-v="No lo sé con precisión">No lo sé con precisión</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>¿Cada cuánto mirarías estos números?</label>
+                <div class="lp-opts" data-campo="frecuencia">
+                  <span class="lp-opt" data-v="Todos los días">Todos los días</span>
+                  <span class="lp-opt" data-v="Una vez por semana">Una vez por semana</span>
+                  <span class="lp-opt" data-v="Una vez por mes">Una vez por mes</span>
+                  <span class="lp-opt" data-v="Solo al cierre del año">Solo al cierre</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>¿Te sumaría poder comparar la empresa con otras del mismo rubro y zona?</label>
+                <div class="lp-opts" data-campo="benchmark">
+                  <span class="lp-opt" data-v="Sí, mucho">Sí, mucho</span>
+                  <span class="lp-opt" data-v="Puede ser">Puede ser</span>
+                  <span class="lp-opt" data-v="No me aporta">No me aporta</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>Sin ver precios todavía, ¿cuánto pagarías por mes por tener esto andando? <span class="lp-optional">Opcional</span></label>
+                <div class="lp-opts" data-campo="precio">
+                  <span class="lp-opt" data-v="Menos de USD 50">Menos de USD 50</span>
+                  <span class="lp-opt" data-v="USD 50 a 100">USD 50 a 100</span>
+                  <span class="lp-opt" data-v="USD 100 a 200">USD 100 a 200</span>
+                  <span class="lp-opt" data-v="Más de USD 200">Más de USD 200</span>
+                  <span class="lp-opt" data-v="Prefiero verlo primero">Prefiero verlo primero</span>
+                </div>
+              </div>
+
+              <div style="border-top: 0.5px solid var(--border); margin: 22px 0 18px; padding-top: 18px;">
+                <h2>Ahora sí, los precios</h2>
+                <div class="lp-formsub">Estos son los planes con los que pensamos lanzar. Miralos y decinos qué te parecen.</div>
+              </div>
+
+              <div class="lp-plans">
+                <div class="lp-plan">
+                  <div class="lp-planname">Starter</div>
+                  <div class="lp-plandesc">Para empezar a ver claro</div>
+                  <div class="lp-planprice">USD 49<small>/mes</small></div>
+                  <div class="lp-planfeats">
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Resumen del mes</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Conexión de fuentes</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>1 fuente bancaria + MP</div>
+                    <div class="no"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Rentabilidad segmentada</div>
+                    <div class="no"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Proyección de caja</div>
+                  </div>
+                </div>
+                <div class="lp-plan featured">
+                  <span class="lp-planflag">El más completo por su precio</span>
+                  <div class="lp-planname">Growth</div>
+                  <div class="lp-plandesc">Para decidir con toda la info</div>
+                  <div class="lp-planprice">USD 99<small>/mes</small></div>
+                  <div class="lp-planfeats">
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Todo lo de Starter</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Rentabilidad segmentada</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Proyección de caja con alertas</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Fuentes ilimitadas</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Sesión mensual de interpretación</div>
+                  </div>
+                </div>
+                <div class="lp-plan">
+                  <div class="lp-planname">Pro</div>
+                  <div class="lp-plandesc">Para comparar contra el rubro</div>
+                  <div class="lp-planprice">USD 199<small>/mes</small></div>
+                  <div class="lp-planfeats">
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Todo lo de Growth</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Benchmark sectorial</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Escenarios de proyección</div>
+                    <div class="yes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Sesión mensual extendida</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lp-feenote">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+                Todos los planes tienen un fee de onboarding único de USD 150 correspondiente a la puesta en marcha y el ordenamiento inicial de tus datos.
+              </div>
+
+              <div class="lp-field">
+                <label>Si arrancaras hoy, ¿con qué plan lo harías?</label>
+                <div class="lp-opts" data-campo="plan">
+                  <span class="lp-opt" data-v="Starter USD 49">Starter USD 49</span>
+                  <span class="lp-opt" data-v="Growth USD 99">Growth USD 99</span>
+                  <span class="lp-opt" data-v="Pro USD 199">Pro USD 199</span>
+                  <span class="lp-opt" data-v="Ninguno a estos precios">Ninguno a estos precios</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label>El onboarding único de USD 150, ¿te frena?</label>
+                <div class="lp-opts" data-campo="onboarding">
+                  <span class="lp-opt" data-v="No, me parece razonable">No, me parece razonable</span>
+                  <span class="lp-opt" data-v="Lo pagaría en cuotas">Lo pagaría en cuotas</span>
+                  <span class="lp-opt" data-v="Sí, es un impedimento">Sí, es un impedimento</span>
+                </div>
+              </div>
+              <div class="lp-field">
+                <label for="lp-duda">¿Qué te haría dudar antes de contratarlo? <span class="lp-optional">Opcional</span></label>
+                <input type="text" id="lp-duda" placeholder="Escribí lo primero que se te venga">
+              </div>
+
+              <div style="border-top: 0.5px solid var(--border); margin: 22px 0 18px; padding-top: 18px;">
+                <h2>Último paso</h2>
+                <div class="lp-formsub">Para avisarte cuando abramos el acceso anticipado.</div>
+              </div>
+
+              <div class="lp-field">
+                <label for="lp-nombre">Nombre</label>
+                <input type="text" id="lp-nombre" autocomplete="name">
+              </div>
+              <div class="lp-field">
+                <label for="lp-mail">Mail</label>
+                <input type="email" id="lp-mail" autocomplete="email">
+              </div>
+              <div class="lp-field">
+                <label for="lp-tel">Teléfono <span class="lp-optional">Opcional</span></label>
+                <input type="tel" id="lp-tel" autocomplete="tel">
+              </div>
+
+              <button type="submit" class="lp-submit">Enviar y sumarme a la lista</button>
+              <div class="lp-privacy">Usamos tus datos solo para contactarte por Nexo BI. No los compartimos con nadie.</div>
+            </form>
+          </div>
+          <div class="lp-ok" id="lp-form-ok">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+            <b>Listo, ya estás en la lista</b>
+            <span>Tu respuesta quedó registrada y nos sirve muchísimo. Te escribimos cuando abramos.</span>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
 function showScreen(name, el) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -450,57 +1228,185 @@ function showScreen(name, el) {
     clientes: ['¿Qué cliente me deja más margen?', 'Rentabilidad real por cliente · Mayo 2025'],
     caja: ['¿Me alcanza la plata para lo que viene?', 'Proyección de caja · Próximas 6 semanas'],
     fuentes: ['De dónde vienen los datos', 'Fuentes conectadas · Actualización automática'],
-    benchmark: ['¿Cómo estoy respecto a otras consultoras?', 'Consultoría y servicios profesionales · CABA y GBA']
+    benchmark: ['¿Cómo estoy respecto a otras consultoras?', 'Consultoría y servicios profesionales · CABA y GBA'],
+    onboarding: ['Cómo empezar', 'Paso 1 de 2 · Conectá tus fuentes'],
+    plan: ['Mi plan', 'Starter, Growth o Pro según lo que necesites'],
+    encuesta: ['Encuesta de validación', 'Lo que ve quien recibe el link']
   };
   document.getElementById('page-title').textContent = titles[name][0];
   document.getElementById('page-sub').textContent = titles[name][1];
   document.getElementById('alert-strip').style.display = (name === 'resumen' || name === 'caja') ? 'flex' : 'none';
+  
 }
 
-const grid = 'rgba(0,0,0,0.06)';
-const muted = '#898781';
-const accent = '#2a78d6';
-const accentBg = 'rgba(42,120,214,0.09)';
-const warn = '#e34948';
+</script>
 
-const base = {
-  responsive: true, maintainAspectRatio: false,
-  plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
-  scales: {
-    x: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } },
-    y: { grid: { color: grid }, ticks: { color: muted, font: { size: 11 } } }
+
+<nav class="bottomnav" id="bottomnav">
+  <div class="nav-item active" onclick="showScreen('resumen', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/><path d="M10 21v-6h4v6"/></svg><span>Resumen</span></div>
+  <div class="nav-item" onclick="showScreen('clientes', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><rect x="3" y="12" width="5" height="8" rx="1"/><rect x="9.5" y="8" width="5" height="12" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/></svg><span>Clientes</span></div>
+  <div class="nav-item bn-encuesta" id="bn-encuesta" onclick="showScreen('encuesta', this)"><span class="bn-fab"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></span><span>Tu opinión</span></div>
+  <div class="nav-item" onclick="showScreen('caja', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><path d="M11 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4M8 3v4M4 11h16"/><path d="M18 14v4M15 16v2M21 15v3"/></svg><span>Caja</span></div>
+  <div class="nav-item" onclick="showScreen('benchmark', this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0" aria-hidden="true"><circle cx="12" cy="8" r="2.5"/><path d="M8 21v-2a4 4 0 0 1 8 0v2"/><circle cx="5" cy="10" r="2"/><path d="M2 20v-1.5A3 3 0 0 1 5 16"/><circle cx="19" cy="10" r="2"/><path d="M22 20v-1.5a3 3 0 0 0-3-2.5"/></svg><span>Benchmark</span></div>
+</nav>
+<script>
+function irEncuesta() {
+  const bn = document.getElementById('bn-encuesta');
+  if (bn && bn.offsetParent !== null) { bn.click(); }
+  else { const nav = document.querySelector('.nav-encuesta'); if (nav) nav.click(); }
+  window.scrollTo(0, 0);
+}
+function abrirFuentes() {
+  const el = document.querySelector('.sidebar .nav-item[onclick*="fuentes"]');
+  if (el) el.click();
+  window.scrollTo(0, 0);
+}
+</script>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE GOOGLE FORMS
+   Un solo formulario en pantalla, dos destinos. Las preguntas de
+   interés van al Form 1 y las de precio al Form 2. Nombre y mail
+   van a los dos para poder cruzar las bases.
+   ============================================================ */
+const GFORM = {
+  exp1: {
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLSdYP9W72E8H2ZktiEqEwTbphZR13U9inM4goNXqj61JGvAFPA/formResponse',
+    nombre: 'entry.497554464',
+    mail: 'entry.147039219',
+    rubro: 'entry.1641248412',
+    tamano: 'entry.1628757661',
+    metodo: 'entry.1559294976',
+    frecuencia: 'entry.1560847316',
+    precio: 'entry.976373363',
+    segmento: 'entry.1171974917'
+  },
+  exp2: {
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLSd4xWWDK1mzgFAuiuOsjivLBry2vZm3Pxx4SVj_-1isZPOkHQ/formResponse',
+    nombre: 'entry.278106877',
+    mail: 'entry.2110583246',
+    telefono: 'entry.1520943469',
+    plan: 'entry.1990649870',
+    onboarding: 'entry.1019300340',
+    dias: 'entry.342486326',
+    duda: 'entry.1191731646',
+    segmento: 'entry.490317633'
   }
 };
 
-new Chart(document.getElementById('c-result'), {
-  type: 'line',
-  data: {
-    labels: ['Dic','Ene','Feb','Mar','Abr','May'],
-    datasets: [{ data: [2100000,2400000,1900000,2800000,3200000,3420000], borderColor: accent, backgroundColor: accentBg, fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: accent, borderWidth: 2 }]
-  },
-  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } } }
+/* ---------- Scroll al formulario ---------- */
+function lpScroll(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+}
+
+/* ---------- Envío a Google Forms por GET ---------- */
+function lpEnviarAGoogle(cfg, valores) {
+  if (!cfg.url) return false;
+  const partes = [];
+  Object.keys(valores).forEach(k => {
+    if (!cfg[k]) return;
+    partes.push(encodeURIComponent(cfg[k]) + '=' + encodeURIComponent(valores[k]));
+  });
+  partes.push('submit=Submit');
+  const ping = new Image();
+  ping.src = cfg.url + '?' + partes.join('&');
+  return true;
+}
+
+/* ---------- Respaldo local ---------- */
+function lpGuardarLocal(valores) {
+  const reg = Object.assign({ fecha: new Date().toLocaleString('es-AR') }, valores);
+  try {
+    const previas = JSON.parse(localStorage.getItem('nexo_bi_respuestas') || '[]');
+    previas.push(reg);
+    localStorage.setItem('nexo_bi_respuestas', JSON.stringify(previas));
+  } catch (e) { /* storage bloqueado */ }
+  console.log('Nexo BI · respuesta registrada', reg);
+}
+
+function lpDescargarCSV() {
+  let filas = [];
+  try { filas = JSON.parse(localStorage.getItem('nexo_bi_respuestas') || '[]'); } catch (e) {}
+  if (!filas.length) { alert('Todavía no hay respuestas guardadas en este navegador.'); return; }
+  const cols = ['fecha','nombre','mail','telefono','rubro','tamano','metodo','frecuencia','benchmark','precio','plan','onboarding','duda'];
+  const csv = [cols.join(',')].concat(filas.map(f => cols.map(k => '"' + String(f[k] === undefined ? '' : f[k]).replace(/"/g,'""') + '"').join(','))).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'nexo_bi_respuestas.csv';
+  a.click();
+}
+
+/* ---------- Opciones de un toque ---------- */
+document.querySelectorAll('.lp-opts').forEach(grupo => {
+  grupo.querySelectorAll('.lp-opt').forEach(op => {
+    op.addEventListener('click', () => {
+      grupo.querySelectorAll('.lp-opt').forEach(o => o.classList.remove('on'));
+      op.classList.add('on');
+    });
+  });
 });
 
-new Chart(document.getElementById('c-clientes'), {
-  type: 'bar',
-  data: {
-    labels: ['Grupo Palermo','Consultora OSA','Dist. Ramos','Resto','Tecno Sur'],
-    datasets: [{ data: [41,35,31,28,22], backgroundColor: [accent,accent,accent,'#73726c',warn], borderRadius: 4, maxBarThickness: 22 }]
-  },
-  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => v + '%' }, min: 0, max: 50 } } }
+function lpOpcion(campo) {
+  const el = document.querySelector('.lp-opts[data-campo="' + campo + '"] .lp-opt.on');
+  return el ? el.dataset.v : '';
+}
+
+/* ---------- Envío único, reparte a los dos formularios ---------- */
+document.getElementById('lp-form-combinada').addEventListener('submit', function(ev) {
+  ev.preventDefault();
+  const nombre = document.getElementById('lp-nombre').value.trim();
+  const mail = document.getElementById('lp-mail').value.trim();
+  const telefono = document.getElementById('lp-tel').value.trim();
+  const rubro = lpOpcion('rubro');
+  const plan = lpOpcion('plan');
+  if (!rubro) { alert('Contanos a qué se dedica la empresa.'); lpScroll('lp-form-unica'); return; }
+  if (!plan) { alert('Elegí una opción de plan, aunque sea "Ninguno a estos precios".'); return; }
+  if (!nombre || !mail.includes('@')) { alert('Completá nombre y un mail válido para sumarte.'); return; }
+
+  const todo = {
+    nombre: nombre, mail: mail, telefono: telefono, rubro: rubro,
+    tamano: lpOpcion('tamano'),
+    metodo: lpOpcion('metodo'),
+    frecuencia: lpOpcion('frecuencia'),
+    benchmark: lpOpcion('benchmark'),
+    precio: lpOpcion('precio'),
+    plan: plan,
+    onboarding: lpOpcion('onboarding'),
+    duda: document.getElementById('lp-duda').value.trim()
+  };
+
+  lpGuardarLocal(todo);
+
+  lpEnviarAGoogle(GFORM.exp1, {
+    nombre: todo.nombre, mail: todo.mail, rubro: todo.rubro,
+    tamano: todo.tamano, metodo: todo.metodo,
+    frecuencia: todo.frecuencia, precio: todo.precio,
+    segmento: todo.rubro
+  });
+
+  lpEnviarAGoogle(GFORM.exp2, {
+    nombre: todo.nombre, mail: todo.mail, telefono: todo.telefono,
+    plan: todo.plan, onboarding: todo.onboarding,
+    dias: todo.benchmark,
+    duda: todo.duda, segmento: todo.rubro
+  });
+
+  document.getElementById('lp-form-body').style.display = 'none';
+  document.getElementById('lp-form-ok').style.display = 'block';
 });
 
-new Chart(document.getElementById('c-caja'), {
-  type: 'line',
-  data: {
-    labels: ['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6'],
-    datasets: [{ data: [1820000,1650000,890000,1230000,1540000,1780000], borderColor: accent, backgroundColor: accentBg, fill: true, tension: 0.35, borderWidth: 2,
-      pointRadius: [4,4,6,4,4,4],
-      pointBackgroundColor: [accent,accent,warn,accent,accent,accent],
-      pointBorderColor: [accent,accent,warn,accent,accent,accent] }]
-  },
-  options: { ...base, scales: { ...base.scales, y: { ...base.scales.y, ticks: { ...base.scales.y.ticks, callback: v => '$' + Math.round(v/1000) + 'K' } } } }
-});
+/* ---------- Modo público. ?encuesta abre solo la encuesta ---------- */
+(function () {
+  const p = new URLSearchParams(window.location.search);
+  if (!p.has('encuesta')) return;
+  document.body.classList.add('solo-encuesta');
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-encuesta').classList.add('active');
+})();
 </script>
 
 </body>
